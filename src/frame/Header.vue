@@ -1,9 +1,37 @@
 <template>
-  <div class="i-header appbar" v-if="header">
-    <mu-appbar title="思领" titleClass="u-bar" >
-      <mu-icon-button icon="keyboard_arrow_left" slot="left"/>
-    </mu-appbar>
-
+  <div class="header" v-if="header">
+    <el-menu :default-active="activeItem" class="header-menu" mode="horizontal" @select="handleSelect">
+      <div class="header-menu-wrap">
+      <div class="header-menu-hot">
+        <el-menu-item index="index">首页</el-menu-item>
+        <el-menu-item index="shoppingCart">购物车</el-menu-item>
+        <el-menu-item index="shoppingCenter">商品中心</el-menu-item>
+        <el-menu-item index="order">我的订单</el-menu-item>
+      </div>
+      <div class="header-menu-my">
+        <router-link :to="{ name: 'Signin'}">
+          <el-menu-item index="signin" >登陆</el-menu-item>
+        </router-link>
+        <router-link :to="{ name: 'Signup'}">
+          <el-menu-item index="signup" >注册</el-menu-item>
+        </router-link>
+        <el-menu-item index="myInfo">我的信息</el-menu-item>
+      </div>
+      </div>
+    </el-menu>
+    <div class="header-board">
+      <div class="header-board-inner">
+        <div class="header-board-name-wrap">
+          <span class="header-board-inner-name">NPY</span>
+          <span class="header-board-inner-desc">网上购物系统</span>
+        </div>
+        <div class="header-board-search">
+          <el-input placeholder="请输入内容" v-model="searchKey" class="input-with-select">
+            <el-button slot="append" icon="search"></el-button>
+          </el-input>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -12,9 +40,17 @@
 
 export default {
   props: ['header'],
-  method: {
-    goBack() {
-      this.$router.go(-1);
+  data() {
+    return {
+      activeItem: 'index',
+      searchKey: '',
+    };
+  },
+  methods: {
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
+//      alert(key);
+//      alert(keyPath);
     },
   },
   computed: {
@@ -28,22 +64,56 @@ export default {
 
 
 <style lang="scss">
-  .i-header {
-    position: absolute;
-    top: 0;left: 0; right: 0;
+
+  .header {
+    width: 100%;
+    .header-menu-wrap {
+      width: 1190px;
+      margin: auto;
+    }
+    .header-menu-hot {
+      margin-left: 15px;
+    }
+    .header-menu-my {
+      float: right;
+      margin-right: 15px;
+    }
+    .header-board {
+      background-image: linear-gradient(150deg, #93b9ff -13px, #d48dd2 1000px);
+      height: 115px;
+      .header-board-inner {
+        width: 1190px;
+        margin: auto;
+        span {
+          color: white;
+          display: block;
+        }
+        .header-board-name-wrap {
+          margin-left: 30px;
+          width: 130px;
+          float: left;
+        }
+        .header-board-inner-name {
+          font-weight: 900;
+          font-size: 60px;
+        }
+        .header-board-inner-desc {
+          font-weight: 400;
+          font-size: 21px;
+          margin-top: -20px;
+        }
+        .header-board-search {
+          width: 250px;
+          float: right;
+          margin-top: 20px;
+          margin-right: 15px;
+          border-radius: 5px;
+        }
+      }
+    }
   }
 
-  .appbar{
-    background-color: white;
-  }
 
-  .u-bar {
-    padding-left: 30%;
-  }
 
-  .mu-appbar{
-    background-color: rgba(240,240,240,0.2);
-    color: rgb(126,87,194);
-  }
 
 </style>

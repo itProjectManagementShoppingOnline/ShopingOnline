@@ -7,6 +7,7 @@ import * as getters from './getters';
 
 // modules
 import CourseIndex from './modules/course/index';
+import FrontIndex from './modules/front/index';
 // pages
 
 Vue.use(Vuex);
@@ -18,5 +19,6 @@ export default new Vuex.Store({
   mutations,
   modules: {
     'course.index': CourseIndex,
+    'front.index': FrontIndex,
   },
 });

@@ -1,17 +1,15 @@
 <template>
   <div class="i-main">
     <i-header :header="needHeader"></i-header>
-    <i-body :header="needHeader" :bottom="needBottom"></i-body>
+    <i-body :header="needHeader"></i-body>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .i-main {
   width: 100%;
-  height: 100%;
-  left: 0; right: 0;
-  overflow: scroll;
-  display: flex;
+  /*height: 100%;*/
+  /*overflow: scroll;*/
   background-color: #f0eff5;
 }
 </style>
@@ -20,7 +18,7 @@ import Header from './Header';
 import Body from './Body';
 
 const hideHeaderEnums = [
-  'tools', 'course', 'landing', 'register',
+  'signin', 'signup',
 ];
 
 export default {
@@ -37,3 +35,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  @import url("//unpkg.com/element-ui@2.0.4/lib/theme-chalk/index.css");
+</style>
