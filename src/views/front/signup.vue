@@ -25,7 +25,7 @@
           <el-input name="password" placeholder="密码" v-model="signupForm.password"/>
         </el-form-item>
         <el-form-item prop="passwordForCheck" label="再次输入密码">
-          <el-input name="passwordForCheck" placeholder="再次输入密码" v-model="passwordForCheck"/>
+          <el-input name="passwordForCheck" placeholder="再次输入密码" v-model="signupForm.passwordForCheck" ref="passwordForCheck"/>
         </el-form-item>
         <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="handlesignup">注册</el-button>
       </el-form>
@@ -34,9 +34,17 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   export default {
     data() {
-      const validatePass = (rule, value, callback) => {
+      const validatePass1 = (rule, value, callback) => {
+        if (this.signupForm.checkPass !== '') {
+          this.$refs.signupForm.validateField('passwordForCheck');
+        }
+        callback();
+      };
+      const validatePass2 = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请再次输入密码'));
         } else if (value !== this.signupForm.password) {
@@ -47,29 +55,31 @@
       };
       return {
         activeIndex: 'signup',
+        passwordError: '',
         signupForm: {
           username: '',
           email: '',
           phoneNum: '',
           password: '',
+          passwordForCheck: '',
         },
-        passwordForCheck: '',
         rules: {
           username: [
             { required: true, message: '请输入用户名', trigger: 'blur' },
             { min: 6, message: '长度至少6个字符', trigger: 'blur' },
           ],
           email: [
-            { required: true, message: '请输入', trigger: 'blur' },
+            { required: true, message: '请输入邮箱地址', trigger: 'blur' },
           ],
           phoneNum: [
-            { required: true, message: '请输入', trigger: 'blur' },
+            { required: true, message: '请输入手机号', trigger: 'blur' },
           ],
           password: [
-            { required: true, message: '请输入', trigger: 'blur' },
+            { required: true, message: '请输入密码', trigger: 'blur' },
+            { validator: validatePass1, trigger: 'blur' },
           ],
           passwordForCheck: [
-            { validator: validatePass, trigger: 'blur' },
+            { validator: validatePass2, trigger: 'blur' },
           ],
         },
       };
@@ -78,13 +88,24 @@
       handlesignup() {
         this.$refs.signupForm.validate((valid) => {
           if (valid) {
-            console.log(this.signupForm);
+            this.signup(this.signupForm).then((respCode) => {
+//              console.log(respCode);
+              if (respCode === 401.1) {
+                this.usernameError = '用户名已存在';
+                return false;
+              }
+              this.$router.push({ path: '/' });
+              return true;
+            });
             return true;
           }
           console.log('error submit!!');
           return false;
         });
       },
+      ...mapActions({
+        signup: 'user.index/signup',
+      }),
     },
     components: {},
   };

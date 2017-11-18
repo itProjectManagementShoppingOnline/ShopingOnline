@@ -4,16 +4,11 @@
     <div class="sign-form" label-position="left">
       <mu-icon-button icon="highlight_off" style="position: absolute;top:-20px;right: 30px;color:red" :to="{ name: 'FrontIndex'}" />
       <div class="form-title">
-        <el-menu :default-active="activeIndex" mode="horizontal">
-          <el-menu-item index="signin">登陆</el-menu-item>
-          <router-link :to="{ name: 'Signup'}">
-            <el-menu-item index="signup">注册</el-menu-item>
-          </router-link>
-        </el-menu>
+        <span>后台管理系统登陆</span>
       </div>
       <el-form :model="signinForm" ref="signinForm" :rules="rules">
         <el-form-item prop="username" label="用户名" ref="username" :error="usernameError">
-          <el-input name="username"  type="text" placeholder="邮箱 手机 用户名" v-model="signinForm.username"/>
+          <el-input name="username"  type="text" placeholder="用户名" v-model="signinForm.username"/>
         </el-form-item>
         <el-form-item prop="password" label="密码" ref="password">
           <el-input name="password" placeholder="密码" v-model="signinForm.password" :error="passwordError"/>
@@ -55,13 +50,6 @@
           if (valid) {
             this.signin(this.signinForm).then((respCode) => {
               console.log(respCode);
-              /* 201 for name error
-                202 for pass error
-              */
-              if (respCode === 401.1) {
-                this.usernameError = '用户名不存在';
-                return false;
-              }
               if (respCode === 401.2) {
                 this.passwordError = '密码错误';
                 return false;
@@ -96,11 +84,12 @@
 
 
     .form-title {
-      margin: 0px auto 40px auto;
-      width: 160px;
-    li {
-      font-size: 20px;
-    }
+      margin-bottom: 40px;
+      text-align: center;
+      span{
+        font-size: 30px;
+        font-weight: 900;
+      }
     }
     .sign-form {
       position: absolute;

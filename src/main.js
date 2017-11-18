@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-default/index.css';
 import '@/common/style/normalize.css';
 import App from './App';
 import router from './router';
+import './permission';
 
 
 Vue.config.productionTip = false;

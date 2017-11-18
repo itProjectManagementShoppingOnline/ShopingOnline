@@ -8,7 +8,6 @@ const state = {
   code: '',
   token: getToken(),
   name: '',
-  avatar: '',
   roles: [],
 };
 
@@ -22,35 +21,11 @@ const actions = {
     const usernameTrimed = payload.username.trim();
     const passwordTrimed = payload.password.trim();
     return rest({
-      url: '/user/signin/post',
+      url: '/admin/signin.post',
       method: 'post',
       data: {
         username: usernameTrimed,
         password: passwordTrimed,
-      },
-    }).then((resp) => {
-      code = resp.data.code;
-      // 成功
-      if (code === 200) {
-        commit('SET_TOKEN', resp.data.data.token);
-      }
-      return Promise.resolve(code);
-    });
-  },
-  signup({ commit }, payload = {}) {
-    let code;
-    const usernameTrimed = payload.username.trim();
-    const passwordTrimed = payload.password.trim();
-    const emailTrimed = payload.email.trim();
-    const phoneNumTrimed = payload.phoneNum.trim();
-    return rest({
-      url: '/user/signup/post',
-      method: 'post',
-      data: {
-        username: usernameTrimed,
-        password: passwordTrimed,
-        email: emailTrimed,
-        phoneNum: phoneNumTrimed,
       },
     }).then((resp) => {
       code = resp.data.code;
@@ -63,7 +38,7 @@ const actions = {
   },
   signOut({ commit }) {
     return rest({
-      url: '/user/signout/post',
+      url: '/admin/signout.post',
       method: 'post',
       // params: {
       //   token: _state.token,
@@ -73,22 +48,6 @@ const actions = {
       commit('SET_ROLES', []);
       removeToken();
       return Promise.resolve(resp);
-    });
-  },
-  getUserInfo({ commit }, _state) {
-    return rest({
-      url: '/user/info/get',
-      method: 'get',
-      params: {
-        token: _state.token,
-      },
-    }).then((resp) => {
-      console.log(resp);
-      commit('SET_ROLES', resp.role);
-      return Promise.resolve(resp);
-    }).catch((error) => {
-      console.log(error);
-      return Promise.resolve(error);
     });
   },
 };

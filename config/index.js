@@ -28,6 +28,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+      '/api': 'http://localhost:3000',
       '/m': 'http://localhost:3000',
       '/user': 'http://localhost:3000',
     },

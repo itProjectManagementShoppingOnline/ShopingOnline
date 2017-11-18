@@ -16,7 +16,7 @@ import Header from './Header';
 import Body from './Body';
 
 const hideHeaderEnums = [
-  'signin', 'signup',
+  'signin', 'signup', 'adminsignin',
 ];
 
 export default {

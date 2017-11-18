@@ -2,8 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Course from '@/views/Course';
 import FrontIndex from '@/views/front/index';
-import Signin from '@/views/front/signin';
 import Signup from '@/views/front/signup';
+import Signin from '@/views/front/signin';
+
+import AdminSignin from '@/views/admin/signin';
 
 Vue.use(Router);
 
@@ -28,6 +30,14 @@ export default new Router({
     }, {
       path: '/signup',
       name: 'Signup',
+      component: Signup,
+    }, {
+      path: '/adminsignin',
+      name: 'AdminSignin',
+      component: AdminSignin,
+    }, {
+      path: '/usercenter',
+      name: 'UserCenter',
       component: Signup,
     },
   ],

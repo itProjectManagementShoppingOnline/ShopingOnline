@@ -133,7 +133,6 @@
       flex: 7;
       .in-index-right-list {
         overflow: hidden;
-        /*max-height: 1600px;*/
         margin: 50px 20px 80px 20px;
       }
       .in-index-right-pagination {

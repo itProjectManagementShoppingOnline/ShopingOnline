@@ -15,10 +15,11 @@
         <router-link :to="{ name: 'Signup'}" v-if="!token">
           <el-menu-item index="signup" >注册</el-menu-item>
         </router-link>
-        <router-link :to="{ name: 'Signin'}" v-if="token">
-          <el-menu-item index="myInfo">我的信息</el-menu-item>
-        </router-link>
-        <input v-model="token" />
+        <!--<router-link :to="{ name: 'Signin'}" v-if="token">-->
+          <el-menu-item index="myInfo" v-if="token">我的信息</el-menu-item>
+        <!--</router-link>-->
+        <el-menu-item index="myInfo" v-if="token" @click="handleSignout" >退出登陆</el-menu-item>
+        <!--<input v-model="token" />-->
       </div>
       </div>
     </el-menu>
@@ -40,7 +41,7 @@
 
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   props: ['header'],
@@ -53,8 +54,14 @@ export default {
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
-//      alert(key);
-//      alert(keyPath);
+    },
+    ...mapActions({
+      signout: 'user.index/signOut',
+    }),
+    handleSignout() {
+      this.signout().then(() => {
+        alert('退出账号');
+      });
     },
   },
   computed: {
