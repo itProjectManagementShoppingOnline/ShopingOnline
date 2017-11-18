@@ -8,8 +8,6 @@
 <style lang="scss" scoped>
 .i-main {
   width: 100%;
-  /*height: 100%;*/
-  /*overflow: scroll;*/
   background-color: #f0eff5;
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
   <div class="item-card">
-    <img src="/static/phone.jpg" class="item-card-img">
+    <div class="item-card-img">
+      <img :src=imgURL style="width: 160px">
+    </div>
     <div class="item-card-name">{{name}}</div>
     <div class="item-card-price">{{price}} 元</div>
     <span class="item-card-button">加入购物车</span>
@@ -13,6 +15,7 @@
     props: {
       name: String,
       price: Number,
+      imgURL: String,
     },
     data() {
       return {};
@@ -36,6 +39,9 @@
     .item-card-img {
       width: 160px;
       height: 180px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
       -webkit-transition:-webkit-transform .4s ease-out;
       transition:-webkit-transform .4s ease-out;
       -moz-transition:transform .4s ease-out,-moz-transform .4s ease-out;

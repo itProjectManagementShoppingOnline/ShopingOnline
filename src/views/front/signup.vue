@@ -10,20 +10,24 @@
           <el-menu-item index="signup">注册</el-menu-item>
         </el-menu>
       </div>
-      <el-form>
-        <el-form-item prop="username">
-          <el-input name="username" type="text" placeholder="邮箱" />
+      <el-form :model="signupForm" ref="signupForm" :rules="rules">
+        <el-form-item prop="email" label="邮箱">
+          <el-input name="email" type="text" placeholder="邮箱" v-model="signupForm.email"/>
         </el-form-item>
-        <el-form-item prop="username">
-          <el-input name="username" type="text" placeholder="手机" />
+
+        <el-form-item prop="phoneNum" label="手机">
+          <el-input name="phoneNum" type="text" placeholder="手机" v-model="signupForm.phoneNum"/>
         </el-form-item>
-        <el-form-item prop="username">
-          <el-input name="username" type="text" placeholder="用户名" />
+        <el-form-item prop="username" label="用户名">
+          <el-input name="username" type="text" placeholder="用户名" v-model="signupForm.username"/>
         </el-form-item>
-        <el-form-item prop="password">
-          <el-input name="password" placeholder="密码" />
+        <el-form-item prop="password" label="密码">
+          <el-input name="password" placeholder="密码" v-model="signupForm.password"/>
         </el-form-item>
-        <el-button type="primary" style="width:100%;margin-bottom:30px;"  @click.native.prevent="handlesignin">登录</el-button>
+        <el-form-item prop="passwordForCheck" label="再次输入密码">
+          <el-input name="passwordForCheck" placeholder="再次输入密码" v-model="passwordForCheck"/>
+        </el-form-item>
+        <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="handlesignup">注册</el-button>
       </el-form>
     </div>
   </div>
@@ -32,11 +36,56 @@
 <script>
   export default {
     data() {
+      const validatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.signupForm.password) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      };
       return {
         activeIndex: 'signup',
+        signupForm: {
+          username: '',
+          email: '',
+          phoneNum: '',
+          password: '',
+        },
+        passwordForCheck: '',
+        rules: {
+          username: [
+            { required: true, message: '请输入用户名', trigger: 'blur' },
+            { min: 6, message: '长度至少6个字符', trigger: 'blur' },
+          ],
+          email: [
+            { required: true, message: '请输入', trigger: 'blur' },
+          ],
+          phoneNum: [
+            { required: true, message: '请输入', trigger: 'blur' },
+          ],
+          password: [
+            { required: true, message: '请输入', trigger: 'blur' },
+          ],
+          passwordForCheck: [
+            { validator: validatePass, trigger: 'blur' },
+          ],
+        },
       };
     },
-    methods: {},
+    methods: {
+      handlesignup() {
+        this.$refs.signupForm.validate((valid) => {
+          if (valid) {
+            console.log(this.signupForm);
+            return true;
+          }
+          console.log('error submit!!');
+          return false;
+        });
+      },
+    },
     components: {},
   };
 </script>
@@ -67,9 +116,12 @@
     }
     .el-form-item {
       border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(220, 220, 220, 0.25);
+      /*background: rgba(220, 220, 220, 0.25);*/
       border-radius: 5px;
       color: #454545;
+    }
+    .el-form-item__label {
+      font-weight: 700;
     }
   }
 

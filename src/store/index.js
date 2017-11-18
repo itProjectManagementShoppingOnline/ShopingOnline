@@ -8,6 +8,7 @@ import * as getters from './getters';
 // modules
 import CourseIndex from './modules/course/index';
 import FrontIndex from './modules/front/index';
+import User from './modules/user/index';
 // pages
 
 Vue.use(Vuex);
@@ -20,5 +21,6 @@ export default new Vuex.Store({
   modules: {
     'course.index': CourseIndex,
     'front.index': FrontIndex,
+    'user.index': User,
   },
 });

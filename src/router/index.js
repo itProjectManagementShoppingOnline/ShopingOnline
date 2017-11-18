@@ -18,17 +18,10 @@ export default new Router({
       name: 'FrontIndex',
       redirect: '/items/allProducts/1',
     }, {
-    //   path: '/items/:type',
-    //   redirect: '/items/:type/1',
-    // }, {
       path: '/items/:type/:page',
       name: 'Items',
       component: FrontIndex,
     }, {
-    //   path: '/',
-    //   name: 'FrontIndex',
-    //   component: FrontIndex,
-    // }, {
       path: '/signin',
       name: 'Signin',
       component: Signin,

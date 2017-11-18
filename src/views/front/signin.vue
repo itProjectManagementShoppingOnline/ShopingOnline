@@ -1,5 +1,6 @@
 <template>
   <div class="in-sign">
+    <input v-model="token" />
     <div class="sign-form" label-position="left">
       <mu-icon-button icon="highlight_off" style="position: absolute;top:-20px;right: 30px;color:red" :to="{ name: 'FrontIndex'}" />
       <div class="form-title">
@@ -10,12 +11,12 @@
           </router-link>
         </el-menu>
       </div>
-      <el-form>
-        <el-form-item prop="username">
-          <el-input name="username" type="text" placeholder="邮箱 手机 用户名" />
+      <el-form :model="signinForm" ref="signinForm" :rules="rules">
+        <el-form-item prop="username" label="用户名" ref="username" :error="usernameError">
+          <el-input name="username"  type="text" placeholder="邮箱 手机 用户名" v-model="signinForm.username"/>
         </el-form-item>
-        <el-form-item prop="password">
-          <el-input name="password" placeholder="密码" />
+        <el-form-item prop="password" label="密码" ref="password">
+          <el-input name="password" placeholder="密码" v-model="signinForm.password" :error="passwordError"/>
         </el-form-item>
         <el-button type="primary" style="width:100%;margin-bottom:30px;"  @click.native.prevent="handlesignin">登录</el-button>
       </el-form>
@@ -24,15 +25,64 @@
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex';
 
   export default {
     data() {
+//      const validateUser = (rule, value, callback) => {
+        // 在输入时验证用户是否存在
+//      };
       return {
         activeIndex: 'signin',
+        usernameError: '',
+        passwordError: '',
+        signinForm: {
+          username: '',
+          password: '',
+        },
+        rules: {
+          username: [
+            { required: true, message: '请输入用户名', trigger: 'blur' },
+            { min: 6, message: '长度至少6个字符', trigger: 'blur' },
+
+          ],
+          password: [
+            { required: true, message: '请输入密码', trigger: 'blur' },
+          ],
+        },
       };
     },
-    methods: {},
-
+    methods: {
+      handlesignin() {
+        this.$refs.signinForm.validate((valid) => {
+          if (valid) {
+            this.signin(this.signinForm).then((respCode) => {
+              console.log(respCode);
+              /* 201 for name error
+                202 for pass error
+              */
+              if (respCode === 201) {
+                this.usernameError = '用户名不存在';
+              }
+              if (respCode === 202) {
+                this.passwordError = '密码错误';
+              }
+            });
+            return true;
+          }
+          console.log('error submit!!');
+          return false;
+        });
+      },
+      ...mapActions({
+        signin: 'user.index/signin',
+      }),
+    },
+    computed: {
+      ...mapGetters({
+        token: 'user.index/token',
+      }),
+    },
   };
 </script>
 
@@ -63,7 +113,6 @@
     }
     .el-form-item {
       border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(220, 220, 220, 0.25);
       border-radius: 5px;
       color: #454545;
     }

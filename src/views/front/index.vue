@@ -87,6 +87,8 @@
     methods: {
       handleCurrentChange(val) {
         this.$router.push({ name: 'Items', params: { page: val, type: this.type } });
+        document.body.scrollTop = 0;
+        // 优化：串形化
       },
       ...mapActions({
         fetchItemList: 'front.index/fetchItemList',
@@ -161,88 +163,4 @@
       }
     }
   }
-
-
-  .p-item {
-    position: relative;
-    float: left;
-    margin-left: 2px;
-    padding: 34px 20px 40px 21px;
-    width: 200px;
-    height: 304px;
-    background-color: #fff;
-    overflow: hidden;
-    .p-img {
-      width: 160px;
-      height: 180px;
-      -webkit-transition:-webkit-transform .4s ease-out;
-      transition:-webkit-transform .4s ease-out;
-      -moz-transition:transform .4s ease-out,-moz-transform .4s ease-out;
-      transition:transform .4s ease-out;
-    }
-
-    .p-name {
-      height: 36px;
-      line-height: 25px;
-      text-align: center;
-      -webkit-transition:-webkit-transform .4s ease-out;
-      transition:-webkit-transform .4s ease-out;
-      -moz-transition:transform .4s ease-out,-moz-transform .4s ease-out;
-      transition:transform .4s ease-out;
-    }
-
-    .p-price {
-      height: 28px;
-      line-height: 28px;
-      font-size: 16px;
-      /*color: #d13030;*/
-      text-align: center;
-      -webkit-transition:-webkit-transform .4s ease-out;
-      transition:-webkit-transform .4s ease-out;
-      -moz-transition:transform .4s ease-out,-moz-transform .4s ease-out;
-      transition:transform .4s ease-out;
-    }
-
-    .p-button {
-      position: absolute;
-      left: 0;
-      bottom: -40px;
-      width: 200px;
-      height: 40px;
-      line-height: 40px;
-      text-align: center;
-      font-size: 14px;
-      color: #fff;
-      background-color: #93b9ff;
-      -webkit-transition:-webkit-transform .4s ease-out;
-      transition:-webkit-transform .4s ease-out;
-      -moz-transition:transform .4s ease-out,-moz-transform .4s ease-out;
-      transition:transform .4s ease-out;
-    }
-  }
-  .p-item:hover {
-    .p-button {
-    bottom: 0px;
-      }
-    .p-img {
-      -webkit-transform:translateY(-15px);
-      -moz-transform:translateY(-15px);
-      -ms-transform:translateY(-15px);
-      transform:translateY(-15px);
-      margin-top:-10px\9
-      }
-    .p-name {
-      -webkit-transform:translateY(-20px);
-      -moz-transform:translateY(-20px);
-      -ms-transform:translateY(-20px);
-      transform:translateY(-20px);
-    }
-    .p-price {
-      -webkit-transform:translateY(-20px);
-      -moz-transform:translateY(-20px);
-      -ms-transform:translateY(-20px);
-      transform:translateY(-20px);
-    }
-  }
-
 </style>
