@@ -1,0 +1,19 @@
+{
+  "code": 200,
+  "msg": "成功",
+  "data|10": [
+    {
+      "uID": 1000,
+      "uname": "wang",
+      "uimage": "http://ozgl6ukmv.bkt.clouddn.com/8f749883bb97dc5597927fb1cbab2d3e.jpg",
+      "uphone": "1234565777",
+      "ustatus": "正常",
+      "uaddress": "大学城",
+      "uschool": "华南理工大学",
+      "uQQ": 123456,
+      "uwechat": "123455",
+      "usignupData": "@date @time",
+      "unFaithRecord" :[]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 <template>
   <div class="in-onsale-manage">
     <el-breadcrumb separator="/" class="breadcrumb">
-      <el-breadcrumb-item :to="{ path: '/admin/index' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/admin' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table
@@ -46,50 +46,53 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="iID"
+        prop="uID"
         sortable
-        label="商品编号">
+        label="用户ID">
       </el-table-column>
       <el-table-column
-        prop="iname"
-        label="商品名"
+        prop="uname"
+        label="用户名"
         sortable
         width="180">
       </el-table-column>
       <el-table-column
-        prop="iupdate"
-        label="上传时间"
+        prop="uphone"
+        label="手机"
         sortable
         width="220">
       </el-table-column>
       <el-table-column
-        prop="itype"
-        label="类别"
+        prop="uaddress"
+        label="地址"
+        sortable
+        width="220">
+      </el-table-column>
+      <el-table-column
+        prop="ustatus"
+        label="状态"
         width="180"
-        :filters="[{ text: '电子产品', value: '电子产品' }, { text: '日用品', value: '日用品' }]"
+        :filters="[{ text: '正常', value: '正常' }, { text: '封禁', value: '封禁' }]"
         :filter-method="filtertype"
         filter-placement="bottom-end">
         <template slot-scope="scope">
           <el-tag
-            close-transition>{{scope.row.itype}}</el-tag>
+            close-transition>{{scope.row.ustatus}}</el-tag>
         </template>
-      </el-table-column>
-      <el-table-column
-        prop="istatus"
-        label="状态">
-      </el-table-column>
-      <el-table-column
-        prop="iseller"
-        label="卖家">
       </el-table-column>
       <el-table-column
         label="操作"
         width="150">
         <template slot-scope="scope">
           <el-button
+            v-if="scope.row.ustatus === '小黑屋'"
+            size="mini"
+            @click="toggleStatus(scope.$index, scope.row)">恢复</el-button>
+          <el-button
+            v-if="scope.row.ustatus === '正常'"
             size="mini"
             type="danger"
-            @click="handleRemove(scope.$index, scope.row)">下架</el-button>
+            @click="toggleStatus(scope.$index, scope.row)">封禁</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -106,26 +109,35 @@
       };
     },
     mounted() {
-      this.fetchOnSaleItemList('time').then((resp) => {
-//        console.log(resp.data.data);
+      this.fetchUserList('time').then((resp) => {
         this.tableData = resp.data.data;
       });
     },
     methods: {
-      handleRemove(index, row) {
+      toggleStatus(index, row) {
         console.log(row.iID);
-        alert(`下架:${row.iname} ${row.iID}`);
-        this.removeOnSaleItem(row.iID);
-        this.fetchOnSaleItemList('time').then((resp) => {
-          this.tableData = resp.data.data;
+        this.toggleUserStatus(row.uID).then((resp) => {
+          console.log(resp);
+          if (resp.data.code === 200) {
+            this.tableData[index].ustatus = this.toggle(this.tableData[index].ustatus);
+            alert('修改状态成功');
+          } else {
+            alert('修改状态失败');
+          }
         });
       },
       filtertype(value, row) {
-        return row.itype === value;
+        return row.ustatus === value;
+      },
+      toggle(status) {
+        if (status === '正常') {
+          return '小黑屋';
+        }
+        return '正常';
       },
       ...mapActions({
-        fetchOnSaleItemList: 'admin.index/fetchOnSaleItemList',
-        removeOnSaleItem: 'admin.index/removeOnSaleItem',
+        fetchUserList: 'admin.index/fetchUserList',
+        toggleUserStatus: 'admin.index/toggleUserStatus',
       }),
     },
     computed: {

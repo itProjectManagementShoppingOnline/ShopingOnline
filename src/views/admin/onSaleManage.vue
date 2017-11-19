@@ -1,7 +1,7 @@
 <template>
   <div class="in-onsale-manage">
     <el-breadcrumb separator="/" class="breadcrumb">
-      <el-breadcrumb-item :to="{ path: '/admin/index' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/admin' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>商品管理</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table
@@ -87,9 +87,14 @@
         width="150">
         <template slot-scope="scope">
           <el-button
+            v-if="scope.row.istatus === '下架'"
+            size="mini"
+            @click="toggleStatus(scope.$index, scope.row)">恢复</el-button>
+          <el-button
+            v-if="scope.row.istatus === '在售'"
             size="mini"
             type="danger"
-            @click="handleRemove(scope.$index, scope.row)">下架</el-button>
+            @click="toggleStatus(scope.$index, scope.row)">下架</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -111,23 +116,31 @@
       });
     },
     methods: {
-      handleRemove(index, row) {
+      toggleStatus(index, row) {
         console.log(row.iID);
-        this.removeOnSaleItem(row.iID).then((resp) => {
+        this.toggleItemStatus(row.iID).then((resp) => {
+          console.log(resp);
           if (resp.data.code === 200) {
-            this.tableData.splice(index, 1);
-            alert(`下架:${row.iname} ${row.iID}`);
+            this.tableData[index].istatus = this.toggle(this.tableData[index].istatus);
+//            this.tableData.splice(index, 1);
+            alert(`修改状态:${row.iname} ${row.iID}`);
           } else {
-            alert('下架失败');
+            alert('修改状态失败');
           }
         });
       },
       filtertype(value, row) {
         return row.itype === value;
       },
+      toggle(status) {
+        if (status === '在售') {
+          return '下架';
+        }
+        return '在售';
+      },
       ...mapActions({
         fetchOnSaleItemList: 'admin.index/fetchOnSaleItemList',
-        removeOnSaleItem: 'admin.index/removeOnSaleItem',
+        toggleItemStatus: 'admin.index/toggleItemStatus',
       }),
     },
     computed: {

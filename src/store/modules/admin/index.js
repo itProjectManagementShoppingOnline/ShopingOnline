@@ -52,17 +52,29 @@ const actions = {
   },
   fetchOnSaleItemList({ commit }, payload = {}) {
     return rest({
-      url: '/m/admin/onsale/items/get',
+      url: '/m/admin/onsale/items/list/get',
       method: 'get',
       params: {
         sort: payload.sort,
       },
     });
   },
-  removeOnSaleItem({ commit }, payload = {}) {
+  toggleItemStatus({ commit }, payload = {}) {
     return rest({
-      url: `/m/admin/remove/${payload.id}/post`,
+      url: '/m/admin/item/status/toggle/post',
       method: 'post',
+      data: {
+        id: payload.iID,
+      },
+    });
+  },
+  toggleUserStatus({ commit }, payload = {}) {
+    return rest({
+      url: '/m/admin/user/status/toggle/post',
+      method: 'post',
+      data: {
+        id: payload.uID,
+      },
     });
   },
   throughOnSaleItem({ commit }, payload = {}) {
@@ -85,7 +97,16 @@ const actions = {
   },
   fetchCheckUploadItemList({ commit }, payload = {}) {
     return rest({
-      url: '/m/admin/checkupload/items/get',
+      url: '/m/admin/checkupload/items/list/get',
+      method: 'get',
+      params: {
+        sort: payload.sort,
+      },
+    });
+  },
+  fetchUserList({ commit }, payload = {}) {
+    return rest({
+      url: '/m/admin/user/list/get',
       method: 'get',
       params: {
         sort: payload.sort,
