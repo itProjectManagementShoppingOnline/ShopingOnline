@@ -13,7 +13,7 @@
       </div>
       <el-form :model="signinForm" ref="signinForm" :rules="rules">
         <el-form-item prop="username" label="用户名" ref="username" :error="usernameError">
-          <el-input name="username"  type="text" placeholder="邮箱 手机 用户名" v-model="signinForm.username"/>
+          <el-input name="username"  type="text" placeholder="手机 用户名" v-model="signinForm.username"/>
         </el-form-item>
         <el-form-item prop="password" label="密码" ref="password">
           <el-input name="password" placeholder="密码" v-model="signinForm.password" :error="passwordError"/>
@@ -58,14 +58,18 @@
               /* 201 for name error
                 202 for pass error
               */
-              if (respCode === 401.1) {
+              if (respCode === 401) {
                 this.usernameError = '用户名不存在';
                 return false;
               }
-              if (respCode === 401.2) {
-                this.passwordError = '密码错误';
-                return false;
-              }
+//              if (respCode === 401.1) {
+//                this.usernameError = '用户名不存在';
+//                return false;
+//              }
+//              if (respCode === 401.2) {
+//                this.passwordError = '密码错误';
+//                return false;
+//              }
               this.$router.push({ path: '/' });
               return true;
             });

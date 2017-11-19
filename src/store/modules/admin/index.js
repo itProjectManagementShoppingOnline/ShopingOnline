@@ -62,7 +62,7 @@ const actions = {
   toggleItemStatus({ commit }, payload = {}) {
     return rest({
       url: '/m/admin/item/status/toggle/post',
-      method: 'post',
+      method: 'put',
       data: {
         id: payload.iID,
       },
@@ -71,7 +71,7 @@ const actions = {
   toggleUserStatus({ commit }, payload = {}) {
     return rest({
       url: '/m/admin/user/status/toggle/post',
-      method: 'post',
+      method: 'put',
       data: {
         id: payload.uID,
       },
@@ -80,7 +80,7 @@ const actions = {
   throughOnSaleItem({ commit }, payload = {}) {
     return rest({
       url: '/m/admin/checkupload/fail/post',
-      method: 'post',
+      method: 'put',
       data: {
         id: payload.iID,
       },
@@ -89,7 +89,7 @@ const actions = {
   unThroughOnSaleItem({ commit }, payload = {}) {
     return rest({
       url: '/m/admin/checkupload/fail/post',
-      method: 'post',
+      method: 'put',
       data: {
         id: payload.iID,
       },

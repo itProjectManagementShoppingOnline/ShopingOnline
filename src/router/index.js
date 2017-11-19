@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Course from '@/views/Course';
 import FrontIndex from '@/views/front/index';
 import Signup from '@/views/front/signup';
 import Signin from '@/views/front/signin';
@@ -16,10 +15,6 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/course',
-      name: 'Course',
-      component: Course,
-    }, {
       path: '/',
       name: 'FrontIndex',
       redirect: '/items/allProducts/1',

@@ -6,7 +6,6 @@ import mutations from './mutations';
 import * as getters from './getters';
 
 // modules
-import CourseIndex from './modules/course/index';
 import FrontIndex from './modules/front/index';
 import User from './modules/user/index';
 import Admin from './modules/admin/index';
@@ -20,7 +19,6 @@ export default new Vuex.Store({
   getters,
   mutations,
   modules: {
-    'course.index': CourseIndex,
     'front.index': FrontIndex,
     'user.index': User,
     'admin.index': Admin,

@@ -1,8 +1,12 @@
 {
-  "userID": 1111,
-  "username": "huang",
-  "password": 123456,
-  "email": "a@qq.com",
-  "phonenum": 12345678999,
-  "role": "admin"
+  "code": 200,
+  "msg": "成功",
+  "data" : {
+    "userID": 1111,
+    "username": "huang",
+    "password": 123456,
+    "email": "a@qq.com",
+    "phonenum": 12345678999,
+    "role": "admin"
+  }
 }

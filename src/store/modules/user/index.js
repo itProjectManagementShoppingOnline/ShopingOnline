@@ -41,7 +41,7 @@ const actions = {
     let code;
     const usernameTrimed = payload.username.trim();
     const passwordTrimed = payload.password.trim();
-    const emailTrimed = payload.email.trim();
+    // const emailTrimed = payload.email.trim();
     const phoneNumTrimed = payload.phoneNum.trim();
     return rest({
       url: '/user/signup/post',
@@ -49,7 +49,7 @@ const actions = {
       data: {
         username: usernameTrimed,
         password: passwordTrimed,
-        email: emailTrimed,
+        // email: emailTrimed,
         phoneNum: phoneNumTrimed,
       },
     }).then((resp) => {
@@ -84,7 +84,8 @@ const actions = {
       },
     }).then((resp) => {
       console.log(resp);
-      commit('SET_ROLES', resp.role);
+      console.log(resp.data.data.role);
+      commit('SET_ROLES', resp.data.data.role);
       return Promise.resolve(resp);
     }).catch((error) => {
       console.log(error);

@@ -61,6 +61,7 @@ export default {
     handleSignout() {
       this.signout().then(() => {
         alert('退出账号');
+        this.$router.push({ name: 'Signin' });
       });
     },
   },

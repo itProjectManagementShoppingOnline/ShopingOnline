@@ -11,10 +11,9 @@
         </el-menu>
       </div>
       <el-form :model="signupForm" ref="signupForm" :rules="rules">
-        <el-form-item prop="email" label="邮箱">
-          <el-input name="email" type="text" placeholder="邮箱" v-model="signupForm.email"/>
-        </el-form-item>
-
+        <!--<el-form-item prop="email" label="邮箱">-->
+          <!--<el-input name="email" type="text" placeholder="邮箱" v-model="signupForm.email"/>-->
+        <!--</el-form-item>-->
         <el-form-item prop="phoneNum" label="手机">
           <el-input name="phoneNum" type="text" placeholder="手机" v-model="signupForm.phoneNum"/>
         </el-form-item>
@@ -58,7 +57,7 @@
         passwordError: '',
         signupForm: {
           username: '',
-          email: '',
+//          email: '',
           phoneNum: '',
           password: '',
           passwordForCheck: '',
@@ -68,9 +67,9 @@
             { required: true, message: '请输入用户名', trigger: 'blur' },
             { min: 6, message: '长度至少6个字符', trigger: 'blur' },
           ],
-          email: [
-            { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-          ],
+//          email: [
+//            { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+//          ],
           phoneNum: [
             { required: true, message: '请输入手机号', trigger: 'blur' },
           ],
