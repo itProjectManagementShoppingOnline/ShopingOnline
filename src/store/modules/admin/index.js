@@ -50,6 +50,48 @@ const actions = {
       return Promise.resolve(resp);
     });
   },
+  fetchOnSaleItemList({ commit }, payload = {}) {
+    return rest({
+      url: '/m/admin/onsale/items/get',
+      method: 'get',
+      params: {
+        sort: payload.sort,
+      },
+    });
+  },
+  removeOnSaleItem({ commit }, payload = {}) {
+    return rest({
+      url: `/m/admin/remove/${payload.id}/post`,
+      method: 'post',
+    });
+  },
+  throughOnSaleItem({ commit }, payload = {}) {
+    return rest({
+      url: '/m/admin/checkupload/fail/post',
+      method: 'post',
+      data: {
+        id: payload.iID,
+      },
+    });
+  },
+  unThroughOnSaleItem({ commit }, payload = {}) {
+    return rest({
+      url: '/m/admin/checkupload/fail/post',
+      method: 'post',
+      data: {
+        id: payload.iID,
+      },
+    });
+  },
+  fetchCheckUploadItemList({ commit }, payload = {}) {
+    return rest({
+      url: '/m/admin/checkupload/items/get',
+      method: 'get',
+      params: {
+        sort: payload.sort,
+      },
+    });
+  },
 };
 
 /* eslint no-param-reassign: 0 */

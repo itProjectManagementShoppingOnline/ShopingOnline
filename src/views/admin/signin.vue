@@ -54,7 +54,7 @@
                 this.passwordError = '密码错误';
                 return false;
               }
-              this.$router.push({ path: '/' });
+              this.$router.push({ name: 'AdminIndex' });
               return true;
             });
             return true;

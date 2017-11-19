@@ -11,7 +11,7 @@ router.beforeEach((to, from, next) => {
   const adminPermission = ['admin'];
   if (userPermission.indexOf(pathRoot) !== -1 || adminPermission.indexOf(pathRoot) !== -1) {
     const token = getToken();
-    alert(token);
+    // alert(token);
     if (!token) {
       next({ path: '/signin' });
       return false;
