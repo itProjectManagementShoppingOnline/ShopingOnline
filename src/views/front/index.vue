@@ -77,12 +77,13 @@
       };
     },
     mounted() {
-      this.fetchItemList({ type: this.type, page: this.page }).then((resp) => {
+      this.fetchItemList({ type: this.type, page: this.page }).then((resp, error) => {
+        if (error) {
+          return Promise.reject(error);
+        }
         this.itemList = resp.data.data;
-//        console.log(this.itemList);
-//        alert(this.page);
-//        alert(this.type);
-      });
+        return Promise.resolve(resp);
+      }).catch(error => console.log(error));
     },
     methods: {
       handleCurrentChange(val) {

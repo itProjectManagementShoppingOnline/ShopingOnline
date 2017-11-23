@@ -48,7 +48,7 @@
       handlesignin() {
         this.$refs.signinForm.validate((valid) => {
           if (valid) {
-            this.signin(this.signinForm).then((respCode) => {
+            this.signin({ signinForm: this.signinForm }).then((respCode) => {
               console.log(respCode);
               if (respCode === 401.2) {
                 this.passwordError = '密码错误';

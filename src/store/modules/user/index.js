@@ -28,13 +28,19 @@ const actions = {
         username: usernameTrimed,
         password: passwordTrimed,
       },
-    }).then((resp) => {
+    }).then((resp, error) => {
+      if (error) {
+        return Promise.reject(error);
+      }
       code = resp.data.code;
       // 成功
       if (code === 200) {
         commit('SET_TOKEN', resp.data.data.token);
       }
       return Promise.resolve(code);
+    }).catch((error) => {
+      console.log(error);
+      return Promise.resolve(error);
     });
   },
   signup({ commit }, payload = {}) {
@@ -52,7 +58,10 @@ const actions = {
         // email: emailTrimed,
         phoneNum: phoneNumTrimed,
       },
-    }).then((resp) => {
+    }).then((resp, error) => {
+      if (error) {
+        return Promise.reject(error);
+      }
       code = resp.data.code;
       // 成功
       if (code === 200) {
@@ -68,7 +77,10 @@ const actions = {
       // params: {
       //   token: _state.token,
       // },
-    }).then((resp) => {
+    }).then((resp, error) => {
+      if (error) {
+        return Promise.reject(error);
+      }
       commit('SET_TOKEN', '');
       commit('SET_ROLES', []);
       removeToken();
