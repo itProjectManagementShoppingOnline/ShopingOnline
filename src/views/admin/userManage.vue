@@ -72,7 +72,7 @@
         prop="ustatus"
         label="状态"
         width="180"
-        :filters="[{ text: '正常', value: '正常' }, { text: '封禁', value: '封禁' }]"
+        :filters="[{ text: '正常', value: '正常' }, { text: '小黑屋', value: '小黑屋' }]"
         :filter-method="filtertype"
         filter-placement="bottom-end">
         <template slot-scope="scope">
@@ -115,9 +115,8 @@
     },
     methods: {
       toggleStatus(index, row) {
-        console.log(row.iID);
-        this.toggleUserStatus(row.uID).then((resp) => {
-          console.log(resp);
+        this.toggleUserStatus({ uID: row.uID }).then((resp) => {
+//          console.log(resp);
           if (resp.data.code === 200) {
             this.tableData[index].ustatus = this.toggle(this.tableData[index].ustatus);
             alert('修改状态成功');

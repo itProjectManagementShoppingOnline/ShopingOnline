@@ -77,7 +77,7 @@
       };
     },
     mounted() {
-      this.fetchItemList(this.type, this.page).then((resp) => {
+      this.fetchItemList({ type: this.type, page: this.page }).then((resp) => {
         this.itemList = resp.data.data;
 //        console.log(this.itemList);
 //        alert(this.page);
@@ -107,7 +107,7 @@
     beforeRouteUpdate(to, from, next) {
 //      console.log(to.params);
 //      console.log(from.params);
-      this.fetchItemList(to.params.type, to.params.page).then((resp) => {
+      this.fetchItemList({ type: to.params.type, page: to.params.page }).then((resp) => {
         this.itemList = resp.data.data;
       });
       next(true);

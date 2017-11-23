@@ -119,7 +119,7 @@
     },
     methods: {
       handleOK(index, row) {
-        this.throughOnSaleItem(row.iID).then((resp) => {
+        this.throughOnSaleItem({ iID: row.iID }).then((resp) => {
           if (resp.data.code === 200) {
             this.tableData.splice(index, 1);
             alert(`通过:${row.iname} ${row.iID}`);
@@ -129,7 +129,7 @@
         });
       },
       handleFail(index, row) {
-        this.unThroughOnSaleItem(row.iID).then((resp) => {
+        this.unThroughOnSaleItem({ iID: row.iID }).then((resp) => {
           if (resp.data.code === 200) {
             this.tableData.splice(index, 1);
             alert(`拒绝:${row.iname} ${row.iID}`);

@@ -19,8 +19,8 @@ const getters = {
 const actions = {
   signin({ commit }, payload = {}) {
     let code;
-    const usernameTrimed = payload.username.trim();
-    const passwordTrimed = payload.password.trim();
+    const usernameTrimed = payload.signinForm.username.trim();
+    const passwordTrimed = payload.signinForm.password.trim();
     return rest({
       url: '/user/signin/post',
       method: 'post',
@@ -39,10 +39,10 @@ const actions = {
   },
   signup({ commit }, payload = {}) {
     let code;
-    const usernameTrimed = payload.username.trim();
-    const passwordTrimed = payload.password.trim();
-    // const emailTrimed = payload.email.trim();
-    const phoneNumTrimed = payload.phoneNum.trim();
+    const usernameTrimed = payload.signupForm.username.trim();
+    const passwordTrimed = payload.signupForm.password.trim();
+    // const emailTrimed = payload.signupForm.email.trim();
+    const phoneNumTrimed = payload.signupForm.phoneNum.trim();
     return rest({
       url: '/user/signup/post',
       method: 'post',

@@ -118,7 +118,7 @@
     methods: {
       toggleStatus(index, row) {
         console.log(row.iID);
-        this.toggleItemStatus(row.iID).then((resp) => {
+        this.toggleItemStatus({ iID: row.iID }).then((resp) => {
           console.log(resp);
           if (resp.data.code === 200) {
             this.tableData[index].istatus = this.toggle(this.tableData[index].istatus);

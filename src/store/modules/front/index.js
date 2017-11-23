@@ -9,6 +9,8 @@ const getters = {
 
 const actions = {
   fetchItemList({ commit }, payload = {}) {
+    console.log('type');
+    console.log(payload.type);
     return rest({
       url: `/m/items/${payload.type}/${payload.page}/list`,
       method: 'get',
