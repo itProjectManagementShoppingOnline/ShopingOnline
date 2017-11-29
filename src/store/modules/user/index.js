@@ -47,7 +47,6 @@ const actions = {
     let code;
     const usernameTrimed = payload.signupForm.username.trim();
     const passwordTrimed = payload.signupForm.password.trim();
-    // const emailTrimed = payload.signupForm.email.trim();
     const phoneNumTrimed = payload.signupForm.phoneNum.trim();
     return rest({
       url: '/user/signup/post',
@@ -81,6 +80,7 @@ const actions = {
       if (error) {
         return Promise.reject(error);
       }
+      console.log(this.state);
       commit('SET_TOKEN', '');
       commit('SET_ROLES', []);
       removeToken();
@@ -95,8 +95,8 @@ const actions = {
         token: _state.token,
       },
     }).then((resp) => {
-      console.log(resp);
-      console.log(resp.data.data.role);
+      // console.log(resp);
+      // console.log(resp.data.data.role);
       commit('SET_ROLES', resp.data.data.role);
       return Promise.resolve(resp);
     }).catch((error) => {
