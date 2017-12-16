@@ -87,7 +87,7 @@
       handlesignup() {
         this.$refs.signupForm.validate((valid) => {
           if (valid) {
-            this.signup(this.signupForm).then((respCode) => {
+            this.signup({ signupForm: this.signupForm }).then((respCode) => {
 //              console.log(respCode);
               if (respCode === 401.1) {
                 this.usernameError = '用户名已存在';

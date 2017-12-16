@@ -7,6 +7,8 @@
     "password": 123456,
     "email": "a@qq.com",
     "phonenum": 12345678999,
-    "role": "admin"
+    "role": "user",
+    "imgURL": "http://ozgl6ukmv.bkt.clouddn.com/8f749883bb97dc5597927fb1cbab2d3e.jpg",
+    "istatus" : 0
   }
 }

@@ -3,10 +3,18 @@
     <el-menu :default-active="activeItem" class="header-menu" mode="horizontal" @select="handleSelect">
       <div class="header-menu-wrap">
       <div class="header-menu-hot">
-        <el-menu-item index="index">首页</el-menu-item>
-        <el-menu-item index="shoppingCart">购物车</el-menu-item>
-        <el-menu-item index="shoppingCenter">商品中心</el-menu-item>
-        <el-menu-item index="order">我的订单</el-menu-item>
+        <router-link :to="{name: 'FrontIndex'}">
+          <el-menu-item index="index">首页</el-menu-item>
+        </router-link>
+        <router-link :to="{name: 'Cart'}">
+          <el-menu-item index="shoppingCart">购物车</el-menu-item>
+        </router-link>
+        <router-link :to="{name:'sellerCenter'}">
+          <el-menu-item index="shoppingCenter">商品中心</el-menu-item>
+        </router-link>
+        <router-link :to="{name: 'userOrder'}">
+          <el-menu-item index="order">我的订单</el-menu-item>
+        </router-link>
       </div>
       <div class="header-menu-my">
         <router-link :to="{ name: 'Signin'}" v-if="!token">
@@ -15,9 +23,9 @@
         <router-link :to="{ name: 'Signup'}" v-if="!token">
           <el-menu-item index="signup" >注册</el-menu-item>
         </router-link>
-        <!--<router-link :to="{ name: 'Signin'}" v-if="token">-->
+        <router-link :to="{ name: 'UserInfo'}" v-if="token">
           <el-menu-item index="myInfo" v-if="token">我的信息</el-menu-item>
-        <!--</router-link>-->
+        </router-link>
         <el-menu-item index="myInfo" v-if="token" @click="handleSignout" >退出登陆</el-menu-item>
         <!--<input v-model="token" />-->
       </div>

@@ -1,18 +1,18 @@
 <template>
   <div class="in-index">
-    <div class="in-index-left">
-      <el-menu default-active="2" class="el-menu-vertical-demo" @open="" @close="">
-        <div v-for="(typeitem, index) in typeSet">
-          <router-link
-            :to="{ name: 'Items', params: { type: typeitem.tIndex, page: 1 } }">
-            <el-menu-item :index=typeitem.tIndex >
-              <i class="el-icon-menu"></i>
-              <span slot="title">{{typeitem.tName}}</span>
-            </el-menu-item>
-          </router-link>
+        <div class="in-index-left">
+          <el-menu default-active="2" class="el-menu-vertical-demo" @open="" @close="">
+            <div v-for="(typeitem, index) in typeSet">
+              <router-link
+                :to="{ name: 'Items', params: { type: typeitem.tIndex, page: 1 } }">
+                <el-menu-item :index=typeitem.tIndex >
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">{{typeitem.tName}}</span>
+                </el-menu-item>
+              </router-link>
+            </div>
+          </el-menu>
         </div>
-      </el-menu>
-    </div>
     <div class="in-index-right">
       <div class="in-index-right-select">
       </div>
@@ -21,6 +21,7 @@
         <item-card
           v-for="(item, index) in itemList"
           :key="index"
+          :id="item.id"
           :name="item.name"
           :price="item.price"
           :imgURL="item.imgURL"
@@ -77,9 +78,9 @@
       };
     },
     mounted() {
-      this.fetchItemList(this.type, this.page).then((resp) => {
+      this.fetchItemList({ type: this.type, page: this.page }).then((resp) => {
         this.itemList = resp.data.data;
-//        console.log(this.itemList);
+        console.log(this.itemList);
 //        alert(this.page);
 //        alert(this.type);
       });
@@ -107,7 +108,7 @@
     beforeRouteUpdate(to, from, next) {
 //      console.log(to.params);
 //      console.log(from.params);
-      this.fetchItemList(to.params.type, to.params.page).then((resp) => {
+      this.fetchItemList({ type: to.params.type, page: to.params.page }).then((resp) => {
         this.itemList = resp.data.data;
       });
       next(true);

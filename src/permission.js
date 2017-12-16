@@ -6,11 +6,12 @@ import { getToken } from './utils/auth'; // 验权
 router.beforeEach((to, from, next) => {
   // 页面权限
   const pathRoot = to.fullPath.split('/')[1];
-  // alert(pathRoot);
+  // alert(to.fullPath);
   const userPermission = ['usercenter'];
   const adminPermission = ['admin'];
   if (userPermission.indexOf(pathRoot) !== -1 || adminPermission.indexOf(pathRoot) !== -1) {
     const token = getToken();
+    // alert(token);
     // alert(token);
     if (!token) {
       next({ path: '/signin' });

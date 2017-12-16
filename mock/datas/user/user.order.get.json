@@ -1,0 +1,14 @@
+{
+  "code": 200,
+  "msg": "成功",
+  "data|5" :[
+    {
+      "orderID":111,
+      "goodsname": "iphoneX",
+      "goodsprice": 5988,
+      "goodsnumber": 5,
+      "sellerphone": 123456789,
+      "orderdate": "@date @time"
+    }
+  ]
+}

@@ -14,6 +14,12 @@ const actions = {
       method: 'get',
     });
   },
+  fetchGoodinfo({ commit }, payload = {}) {              // 获取商城某个商品的信息
+    return rest({
+      url: `/m/good/info/${payload.id}/list`,
+      method: 'get',
+    });
+  },
 };
 
 /* eslint no-param-reassign: 0 */
