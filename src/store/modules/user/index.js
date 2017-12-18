@@ -54,7 +54,6 @@ const actions = {
       data: {
         username: usernameTrimed,
         password: passwordTrimed,
-        // email: emailTrimed,
         phoneNum: phoneNumTrimed,
       },
     }).then((resp, error) => {
@@ -80,21 +79,23 @@ const actions = {
       if (error) {
         return Promise.reject(error);
       }
-      console.log(this.state);
+      // console.log(this.state);
       commit('SET_TOKEN', '');
       commit('SET_ROLES', []);
       removeToken();
       return Promise.resolve(resp);
     });
   },
-  getUserInfo({ commit }, _state) {
+  getUserInfo({ commit, _state }) {
     return rest({
       url: '/user/info/get',
       method: 'get',
       params: {
-        token: _state.token,
+        token: state.token,
       },
     }).then((resp) => {
+      console.log('getUserInfo', state);
+      console.log('getUserInfo', _state);
       // console.log(resp);
       // console.log(resp.data.data.role);
       commit('SET_ROLES', resp.data.data.role);
@@ -109,7 +110,9 @@ const actions = {
 /* eslint no-param-reassign: 0 */
 const mutations = {
   SET_TOKEN: (_state, token) => {
-    _state.token = token;
+    // _state.token = token;
+    console.log('SET_TOKEN', state);
+    console.log('SET_TOKEN_', _state);
     setToken(token);
   },
   SET_ROLES: (_state, roles) => {

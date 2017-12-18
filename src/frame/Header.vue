@@ -31,7 +31,7 @@
         </div>
         <div class="header-board-search">
           <el-input placeholder="请输入内容" v-model="searchKey" class="input-with-select">
-            <el-button slot="append" icon="search"></el-button>
+            <el-button slot="append" icon="search" @click="handleSearch"></el-button>
           </el-input>
         </div>
       </div>
@@ -57,12 +57,22 @@ export default {
     },
     ...mapActions({
       signout: 'user.index/signOut',
+      searchItem: 'front.index/searchItem',
     }),
     handleSignout() {
       this.signout().then(() => {
         alert('退出账号');
         this.$router.push({ name: 'Signin' });
       });
+    },
+    handleSearch() {
+      // get type
+      const itemType = this.$route.params.type;
+      const itemPage = this.$route.params.page;
+//      alert(itemType);
+//      alert(itemPage);
+//      alert(this.searchKey);
+      this.$router.push({ name: 'Search', params: { page: itemPage, type: itemType, key: this.searchKey } });
     },
   },
   computed: {

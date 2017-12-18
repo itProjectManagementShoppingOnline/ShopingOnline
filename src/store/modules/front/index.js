@@ -16,6 +16,12 @@ const actions = {
       method: 'get',
     });
   },
+  // searchItem({ commit }, payload = {}) {
+  //   return rest({
+  //     url: `/m/items/search/?key=${payload.key}`,
+  //     method: 'get',
+  //   });
+  // },
 };
 
 /* eslint no-param-reassign: 0 */

@@ -20,6 +20,7 @@ router.beforeEach((to, from, next) => {
     }
     store.dispatch('user.index/getUserInfo', token).then((res) => {
       // alert(res.data.role);
+      console.log('dis', res.data.data.role);
       const UserRole = res.data.data.role;
       // 需要用户权限
       if (userPermission.indexOf(pathRoot) !== -1 && UserRole === 'user') {

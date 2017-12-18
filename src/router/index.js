@@ -19,9 +19,14 @@ export default new Router({
       name: 'FrontIndex',
       redirect: '/items/allProducts/1',
     }, {
-      path: '/items/:type/:page',
+      path: '/items/:type/:page/',
       name: 'Items',
       component: FrontIndex,
+    }, {
+      path: '/items/:type/:page/:key',
+      name: 'Search',
+      component: FrontIndex,
+      meta: { encode: 'utf-8' },
     }, {
       path: '/signin',
       name: 'Signin',
