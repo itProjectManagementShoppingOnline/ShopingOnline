@@ -38,7 +38,7 @@
           <span class="header-board-inner-desc">网上购物系统</span>
         </div>
         <div class="header-board-search">
-          <el-input placeholder="请输入内容" v-model="searchKey" class="input-with-select">
+          <el-input placeholder="请输入内容" v-model="searchKey" class="input-with-select"v-if="isShow">
             <el-button slot="append" icon="search" @click="handleSearch"></el-button>
           </el-input>
         </div>
@@ -77,15 +77,16 @@ export default {
       // get type
       const itemType = this.$route.params.type;
       const itemPage = this.$route.params.page;
-//      alert(itemType);
-//      alert(itemPage);
-//      alert(this.searchKey);
       this.$router.push({ name: 'Search', params: { page: itemPage, type: itemType, key: this.searchKey } });
     },
   },
   computed: {
-    getPath() {
-//      const path = this.$route.fullPath.split('/')[1];
+    isShow() {
+      const path = this.$route.fullPath.split('/')[1];
+      if (path === 'items') {
+        return true;
+      }
+      return false;
     },
     ...mapGetters({
       token: 'user.index/token',

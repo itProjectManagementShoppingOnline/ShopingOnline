@@ -15,7 +15,7 @@
 
   export default {
     props: {
-      ID: Number,
+      id: Number,
       name: String,
       price: Number,
       imgURL: String,

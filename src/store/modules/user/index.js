@@ -18,9 +18,10 @@ const getters = {
 
 const actions = {
   signin({ commit }, payload = {}) {
+    console.log(payload);
     let code;
-    const usernameTrimed = payload.signinForm.username.trim();
-    const passwordTrimed = payload.signinForm.password.trim();
+    const usernameTrimed = payload.username.trim();
+    const passwordTrimed = payload.password.trim();
 
     return rest({
       url: '/user/signin/post',
