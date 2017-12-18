@@ -1,0 +1,20 @@
+{
+  "code": 200,
+  "msg": "成功",
+  "data|12" :[
+    {
+      "iID": 1000,
+      "iname": "iphoneX",
+      "imageURL": "http://ozgl6ukmv.bkt.clouddn.com/8f749883bb97dc5597927fb1cbab2d3e.jpg",
+      "itype": "电子产品",
+      "istatus": "在售",
+      "iseller": "王",
+      "ioriginalPrice": 9999,
+      "iprice": 7000,
+      "iaddress": "大学城",
+      "idesc": "大甩卖",
+      "inumber":1,
+      "iupdate": "@date @time"
+    }
+  ]
+}

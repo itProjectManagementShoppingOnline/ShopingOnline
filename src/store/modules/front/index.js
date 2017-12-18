@@ -16,12 +16,14 @@ const actions = {
       method: 'get',
     });
   },
-  // searchItem({ commit }, payload = {}) {
-  //   return rest({
-  //     url: `/m/items/search/?key=${payload.key}`,
-  //     method: 'get',
-  //   });
-  // },
+
+  fetchGoodinfo({ commit }, payload = {}) {              // 获取商城某个商品的信息
+    return rest({
+      url: `/m/good/info/${payload.id}/list`,
+      method: 'get',
+    });
+  },
+
 };
 
 /* eslint no-param-reassign: 0 */

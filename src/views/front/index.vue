@@ -1,18 +1,18 @@
 <template>
   <div class="in-index">
-    <div class="in-index-left">
-      <el-menu default-active="2" class="el-menu-vertical-demo" @open="" @close="">
-        <div v-for="(typeitem, index) in typeSet">
-          <router-link
-            :to="{ name: 'Items', params: { type: typeitem.tIndex, page: 1 } }">
-            <el-menu-item :index=typeitem.tIndex >
-              <i class="el-icon-menu"></i>
-              <span slot="title">{{typeitem.tName}}</span>
-            </el-menu-item>
-          </router-link>
+        <div class="in-index-left">
+          <el-menu default-active="2" class="el-menu-vertical-demo" @open="" @close="">
+            <div v-for="(typeitem, index) in typeSet">
+              <router-link
+                :to="{ name: 'Items', params: { type: typeitem.tIndex, page: 1 } }">
+                <el-menu-item :index=typeitem.tIndex >
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">{{typeitem.tName}}</span>
+                </el-menu-item>
+              </router-link>
+            </div>
+          </el-menu>
         </div>
-      </el-menu>
-    </div>
     <div class="in-index-right">
       <div class="in-index-right-select">
       </div>
@@ -21,6 +21,7 @@
         <item-card
           v-for="(item, index) in itemList"
           :key="index"
+          :id="item.id"
           :name="item.name"
           :price="item.price"
           :imgURL="item.imgURL"

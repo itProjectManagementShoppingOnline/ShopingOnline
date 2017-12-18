@@ -1,26 +1,67 @@
 <template>
   <div class="item-card">
     <div class="item-card-img">
-      <img :src=imgURL style="width: 160px">
+      <img :src=imgURL style="width: 160px" @click="lookinfo">
     </div>
     <div class="item-card-name">{{name}}</div>
     <div class="item-card-price">{{price}} 元</div>
-    <span class="item-card-button">加入购物车</span>
+    <span class="item-card-button" @click="addcart">加入购物车</span>
   </div>
 
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex';
+
   export default {
     props: {
+      ID: Number,
       name: String,
       price: Number,
       imgURL: String,
     },
     data() {
-      return {};
+      return {
+        userinfo: {},
+        good: {
+          iID: '',
+          iname: '',
+          userID: '',
+          inumber: '',
+        },
+      };
     },
-    methods: {},
+    methods: {
+      lookinfo() {
+        this.$router.push({ name: 'GoodInfo', params: { id: this.id } });
+      },
+      addcart() {
+        if (this.token) {
+          this.getUserInfo(this.token).then((resp) => {
+            this.userinfo = resp.data.data;
+          });
+          this.good.iID = this.ID;
+          this.good.iname = this.name;
+          this.good.userID = this.userinfo.userID;
+          this.good.inumber = 1;
+          this.addgoodintoCart(this.good).then((resp) => {
+            console.log(resp.data.code);
+            alert(resp.data.code);
+          });
+        } else {         // 提醒登录或注册
+          this.$router.push({ name: 'Signin' });
+        }
+      },
+      ...mapActions({
+        addgoodintoCart: 'user.index/addgoodintoCart',
+        getUserInfo: 'user.index/getUserInfo',
+      }),
+    },
+    computed: {
+      ...mapGetters({
+        token: 'user.index/token',
+      }),
+    },
     components: {},
   };
 </script>

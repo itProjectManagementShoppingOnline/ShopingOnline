@@ -55,6 +55,7 @@
           if (valid) {
             this.signin({ signinForm: this.signinForm }).then((respCode) => {
               console.log(respCode);
+              console.log(151);
               /* 201 for name error
                 202 for pass error
               */

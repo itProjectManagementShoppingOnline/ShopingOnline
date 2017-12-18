@@ -11,6 +11,22 @@ module.exports = {
   '/m/admin/checkupload/ok/post': 'admin/admin.checkupload.ok.id.post.json',
   '/m/admin/item/status/toggle/post': 'admin/admin.item.togglestatus.id.post.json',
   '/m/admin/user/status/toggle/post': 'admin/admin.item.togglestatus.id.post.json',
+  '/user/cart/goods/get/list': 'user/user.cart.goods.get.json',
+  '/user/order/get/list': 'user/user.order.get.json',
+  '/user/seller/goods/list': 'user/seller.goodslist.get.json',
+  '/user/seller/orders/list': 'user/seller.orders.get.json',
+  '/m/good/info/:id/list': 'front/goodinfo.json',
+  '/user/seller/open': 'user/opensellercenter.json',
+  '/user/seller/cancel/good': 'user/sellercancelgood.json',
+  '/user/seller/up/item': 'user/seller.up.item.json',
+  '/user/post/info': 'user/post.user.info.json',
+  '/user/add/item/cart': 'user/add.good.to.cart.json',
+  '/user/add/item/order': 'user/post.order.from.cart.json',
+  '/user/delete/item/cart': 'user/post.cart.change.list.json',
+  '/user/delete/user/order': 'user/delete.user.order.json',
+  '/user/delete/seller/order': 'user/delete.seller.order.json',
+  '/user/change/sellergood/info': 'user/changeseller.goodinfo.json',
 }
+
 
 
