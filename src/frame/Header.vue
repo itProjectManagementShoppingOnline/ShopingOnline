@@ -77,7 +77,11 @@ export default {
       // get type
       const itemType = this.$route.params.type;
       const itemPage = this.$route.params.page;
-      this.$router.push({ name: 'Search', params: { page: itemPage, type: itemType, key: this.searchKey } });
+      if (this.searchKey) {
+        this.$router.push({ name: 'Search', params: { page: itemPage, type: itemType, key: this.searchKey } });
+        return;
+      }
+      this.$router.push({ name: 'Items', params: { page: itemPage, type: itemType } });
     },
   },
   computed: {

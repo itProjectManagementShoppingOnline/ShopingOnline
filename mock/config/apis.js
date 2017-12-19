@@ -1,4 +1,5 @@
 module.exports = {
+  '/m/items/:type/:page/:key/list': 'front/items.type.list.get.json',
   '/m/items/:type/:page/list': 'front/items.type.list.get.json',
   '/user/signin/post': 'user/user.signin.post.json',
   '/user/signup/post': 'user/user.signup.post.json',

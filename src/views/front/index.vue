@@ -78,7 +78,7 @@
       };
     },
     mounted() {
-      this.fetchItemList({ type: this.type, page: this.page }).then((resp, error) => {
+      this.fetchItemList({ type: this.type, page: this.page, key: this.key }).then((resp, error) => {
         if (error) {
           return Promise.reject(error);
         }
@@ -88,15 +88,21 @@
     },
     methods: {
       handleCurrentChange(val) {
+        if (this.key) {
+          this.$router.push({ name: 'Search', params: { page: val, type: this.type, key: this.key } });
+          return;
+        }
         this.$router.push({ name: 'Items', params: { page: val, type: this.type } });
         document.body.scrollTop = 0;
-        // 优化：串形化
       },
       ...mapActions({
         fetchItemList: 'front.index/fetchItemList',
       }),
     },
     computed: {
+      key() {
+        return this.$route.fullPath.split('/')[4];
+      },
       ...mapGetters({
       }),
       type() {

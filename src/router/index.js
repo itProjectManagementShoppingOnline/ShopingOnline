@@ -32,7 +32,6 @@ export default new Router({
       path: '/items/:type/:page/:key',
       name: 'Search',
       component: FrontIndex,
-      meta: { encode: 'utf-8' },
     }, {
       path: '/signin',
       name: 'Signin',
