@@ -113,11 +113,12 @@
       },
     },
     beforeRouteUpdate(to, from, next) {
-//      console.log(to.params);
-//      console.log(from.params);
-      this.fetchItemList({ type: to.params.type, page: to.params.page }).then((resp) => {
-        this.itemList = resp.data.data;
-      });
+      this.fetchItemList({
+        type: to.params.type,
+        page: to.params.page,
+        key: this.key }).then((resp) => {
+          this.itemList = resp.data.data;
+        });
       next(true);
     },
     components: {
