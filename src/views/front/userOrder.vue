@@ -16,12 +16,13 @@
       <el-table-column
         prop="goodsname"
         label="商品名称"
-        width="180">
+        width="190">
       </el-table-column>
       <el-table-column
         prop="goodsprice"
         label="商品价格"
-        sortable>
+        sortable
+        width="180">
       </el-table-column>
       <el-table-column
         prop="goodsnumber"
@@ -29,19 +30,13 @@
         width="180">
       </el-table-column>
       <el-table-column
-        prop="orderdate"
-        label="订单日期"
-        sortable
-        width="180">
-      </el-table-column>
-      <el-table-column
         prop="sellerphone"
         label="卖家联系电话"
-        width="180">
+        width="190">
       </el-table-column>
       <el-table-column
         label="操作"
-        width="130">
+        width="190">
         <template slot-scope="scope">
           <el-button type="success" @click="deleteorder(scope.$index, scope.row)">删除</el-button>
         </template>
@@ -51,7 +46,6 @@
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex';
-
   export default {
     data() {
       return {
@@ -71,7 +65,7 @@
           console.log(88888);
           if (resp.data.code === 200) {
             this.orderlist.splice(index, 1);
-            alert(`成功移除:${row.iname}订单 `);
+            alert(`成功移除:${row.goodsname}订单 `);
           } else {
             alert('移除失败');
           }

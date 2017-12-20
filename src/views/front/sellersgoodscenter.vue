@@ -51,35 +51,35 @@
       <div class="user-sell-center-right-two" v-if="page===2">
         <div class="order-list">
           <el-table
-          :data="orderlist"
-          stripe
-          style="width: 84.5%">
+            :data="orderlist"
+            stripe
+            style="width: 84.5%">
             <el-table-column
-            prop="orderID"
-            label="订单号"
-            width="130">
+              prop="orderID"
+              label="订单号"
+              width="130">
             </el-table-column>
             <el-table-column
-            prop="goodsname"
-            label="商品名称"
-            width="130">
+              prop="goodsname"
+              label="商品名称"
+              width="130">
             </el-table-column>
             <el-table-column
-            prop="ordernumber"
-            label="订单数量"
-            sortable
-            width="120">
+              prop="ordernumber"
+              label="订单数量"
+              sortable
+              width="120">
             </el-table-column>
             <el-table-column
-            prop="goodsprice"
-            label="商品价格"
-            sortable
-            width="120">
+              prop="goodsprice"
+              label="商品价格"
+              sortable
+              width="120">
             </el-table-column>
             <el-table-column
-            prop="buyerphone"
-            label="买家联系电话"
-            width="130">
+              prop="buyerphone"
+              label="买家联系电话"
+              width="130">
             </el-table-column>
             <el-table-column
               label="操作"
@@ -128,6 +128,9 @@
             <el-form-item label="详细描述">
               <el-input v-model="formLabelAlign.idesc" placeholder="请为您的商品提供一段详细描述" ></el-input>
             </el-form-item>
+            <el-form-item label="库存数量">
+              <el-input-number v-model="formLabelAlign.inumber"  :min="1" ></el-input-number>
+            </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onsubmit">上传商品</el-button>
               <el-button @click="onquit">取消</el-button>
@@ -150,7 +153,6 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import itemCardsell from './components/itemofseller';
-
   export default {
     data() {
       return {
@@ -167,6 +169,7 @@
           idesc: '',
           iaddress: '',
           itype: '',
+          inumber: '',
         },
         options: [{
           value: 'allProducts',
@@ -221,11 +224,14 @@
       },
       deleteorder(index, row) {
         this.deleteSellerOrder({ orderID: row.orderID }).then((resp) => {
+          console.log(646468464);
+          console.log(row.orderID);
           console.log(resp.data.code);
           console.log(88888);
+          console.log(row.goodsname);
           if (resp.data.code === 200) {
             this.orderlist.splice(index, 1);
-            alert(`成功移除:${row.iname}订单 `);
+            alert(`成功移除: ${row.goodsname}订单 `);
           } else {
             alert('移除失败');
           }
@@ -290,7 +296,6 @@
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';
         const isLt2M = file.size / 1024 / 1024 < 2;
-
         if (!isJPG) {
           this.$message.error('上传头像图片只能是 JPG 格式!');
         }
