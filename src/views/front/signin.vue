@@ -52,7 +52,7 @@
       handlesignin() {
         this.$refs.signinForm.validate((valid) => {
           if (valid) {
-            this.signin({ signinForm: this.signinForm }).then((respCode) => {
+            this.signin({ signinForm: this.signinForm, role: 'user' }).then((respCode) => {
               console.log(respCode);
               console.log(151);
               /* 201 for name error

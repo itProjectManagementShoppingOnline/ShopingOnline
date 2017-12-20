@@ -18,11 +18,12 @@ const getters = {
 
 const actions = {
   signin({ commit }, payload = {}) {
-    console.log(payload);
+    // console.log(payload);
+    // alert(payload.role);
     let code;
     const usernameTrimed = payload.signinForm.username.trim();
     const passwordTrimed = payload.signinForm.password.trim();
-    alert(usernameTrimed);
+    // alert(usernameTrimed);
 
     return rest({
       url: '/user/signin/post',
@@ -30,6 +31,7 @@ const actions = {
       data: {
         username: usernameTrimed,
         password: passwordTrimed,
+        role: payload.role,
       },
     }).then((resp, error) => {
       if (error) {
