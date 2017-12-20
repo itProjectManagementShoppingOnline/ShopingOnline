@@ -7,8 +7,7 @@
       "goodsname": "iphoneX",
       "goodsprice": 5988,
       "goodsnumber": 5,
-      "sellerphone": 123456789,
-      "orderdate": "@date @time"
+      "sellerphone": 123456789
     }
   ]
 }

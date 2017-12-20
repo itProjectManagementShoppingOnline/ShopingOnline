@@ -157,6 +157,7 @@ const actions = {
         iaddress: iaddresstrim,
         idesc: idesctrim,
         itype: itypetrim,
+        inumber: payload.inumber,
       },
     }).then((resp) => {
       code = resp.data.code;

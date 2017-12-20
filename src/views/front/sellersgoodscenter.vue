@@ -128,6 +128,9 @@
             <el-form-item label="详细描述">
               <el-input v-model="formLabelAlign.idesc" placeholder="请为您的商品提供一段详细描述" ></el-input>
             </el-form-item>
+            <el-form-item label="库存数量">
+              <el-input-number v-model="formLabelAlign.inumber"  :min="1" ></el-input-number>
+            </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onsubmit">上传商品</el-button>
               <el-button @click="onquit">取消</el-button>
@@ -167,6 +170,7 @@
           idesc: '',
           iaddress: '',
           itype: '',
+          inumber: '',
         },
         options: [{
           value: 'allProducts',
@@ -221,11 +225,14 @@
       },
       deleteorder(index, row) {
         this.deleteSellerOrder({ orderID: row.orderID }).then((resp) => {
+          console.log(646468464);
+          console.log(row.orderID);
           console.log(resp.data.code);
           console.log(88888);
+          console.log(row.goodsname);
           if (resp.data.code === 200) {
             this.orderlist.splice(index, 1);
-            alert(`成功移除:${row.iname}订单 `);
+            alert(`成功移除: ${row.goodsname}订单 `);
           } else {
             alert('移除失败');
           }
