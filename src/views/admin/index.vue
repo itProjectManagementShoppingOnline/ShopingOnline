@@ -5,12 +5,12 @@
           <div class="admin-board">在售商品管理</div>
         </router-link>
         <router-link :to="{ name: 'UploadManage'}" >
-          <div class="admin-board">上传商品审核</div>
+          <div class="admin-board"></div>
         </router-link>
         <router-link :to="{ name: 'UserManage'}" >
           <div class="admin-board">用户管理</div>
         </router-link>
-        <router-link :to="{ name: 'FrontIndex'}" >
+        <router-link :to="{ name: 'AdminIndex'}" >
           <div class="admin-board">退出</div>
         </router-link>
       </div>
