@@ -153,6 +153,7 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import itemCardsell from './components/itemofseller';
+
   export default {
     data() {
       return {
