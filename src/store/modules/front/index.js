@@ -13,12 +13,12 @@ const actions = {
     console.log(payload.type);
     if (payload.key) {
       return rest({
-        url: `/m/items/${payload.type}/${payload.page}/${payload.key}/list`,
+        url: `/api/m/items/${payload.type}/${payload.page}/${payload.key}/list`,
         method: 'get',
       });
     }
     return rest({
-      url: `/m/items/${payload.type}/${payload.page}/list`,
+      url: `/api/m/items/${payload.type}/${payload.page}/list`,
       method: 'get',
     });
   },
@@ -26,8 +26,8 @@ const actions = {
   fetchGoodinfo({ commit }, payload = {}) {              // 获取商城某个商品的信息
     return rest({
       // url: 'http://192.168.1.175:8000/m/good/info/1/list',
-      url: `http://192.168.1.175:8000/m/good/info/${payload.id}/list`,
-      // url: `/m/good/info/${payload.id}/list`,
+      // url: `http://192.168.1.175:8000/m/good/info/${payload.id}/list`,
+      url: `/m/good/info/${payload.id}/list`,
       method: 'get',
     });
   },
