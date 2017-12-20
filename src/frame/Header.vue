@@ -60,6 +60,9 @@ export default {
     };
   },
   methods: {
+    reload() {
+      location.reload();
+    },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
@@ -70,7 +73,7 @@ export default {
     handleSignout() {
       this.signout().then(() => {
         alert('退出账号');
-        this.$router.push({ name: 'Signin' });
+        location.reload();
       });
     },
     handleSearch() {
@@ -82,7 +85,11 @@ export default {
         return;
       }
       this.$router.push({ name: 'Items', params: { page: itemPage, type: itemType } });
+      location.reload();
     },
+  },
+  watch: {
+    $route: 'reload',
   },
   computed: {
     isShow() {
