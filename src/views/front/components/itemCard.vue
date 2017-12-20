@@ -7,7 +7,6 @@
     <div class="item-card-price">{{price}} 元</div>
     <span class="item-card-button" @click="addcart">加入购物车</span>
   </div>
-
 </template>
 
 <script>
@@ -33,6 +32,7 @@
     },
     methods: {
       lookinfo() {
+        alert(this.id);
         this.$router.push({ name: 'GoodInfo', params: { id: this.id } });
       },
       addcart() {
