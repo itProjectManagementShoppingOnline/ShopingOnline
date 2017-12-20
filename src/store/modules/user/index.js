@@ -94,9 +94,6 @@ const actions = {
     return rest({
       url: '/user/info/get',
       method: 'get',
-      params: {
-        token: state.token,
-      },
     }).then((resp) => {
       console.log('getUserInfo', state);
       console.log('getUserInfo', _state);

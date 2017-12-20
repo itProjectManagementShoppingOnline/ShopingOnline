@@ -48,7 +48,7 @@
     data() {
       return {
         itemList: [],
-        totalItemNum: 100,
+        totalItemNum: 2,
 //        page: this.$route.params.page,
 //        type: this.$route.params.type,
         typeSet: [

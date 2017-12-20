@@ -52,7 +52,7 @@ const actions = {
   // },
   fetchOnSaleItemList({ commit }, payload = {}) {
     return rest({
-      url: '/m/admin/onsale/items/list/get',
+      url: '/api/m/admin/onsale/items/list/get',
       method: 'get',
       params: {
         sort: payload.sort,
@@ -61,7 +61,7 @@ const actions = {
   },
   toggleItemStatus({ commit }, payload = {}) {
     return rest({
-      url: '/m/admin/item/status/toggle/post',
+      url: '/api/m/admin/item/status/toggle/post',
       method: 'put',
       data: {
         id: payload.iID,
@@ -71,7 +71,7 @@ const actions = {
   toggleUserStatus({ commit }, payload = {}) {
     console.log(payload.uID);
     return rest({
-      url: '/m/admin/user/status/toggle/post',
+      url: '/api/m/admin/user/status/toggle/post',
       method: 'put',
       data: {
         id: payload.uID,
@@ -80,7 +80,7 @@ const actions = {
   },
   throughOnSaleItem({ commit }, payload = {}) {
     return rest({
-      url: '/m/admin/checkupload/fail/post',
+      url: '/api/m/admin/checkupload/fail/post',
       method: 'put',
       data: {
         id: payload.iID,
@@ -89,7 +89,7 @@ const actions = {
   },
   unThroughOnSaleItem({ commit }, payload = {}) {
     return rest({
-      url: '/m/admin/checkupload/fail/post',
+      url: '/api/m/admin/checkupload/fail/post',
       method: 'put',
       data: {
         id: payload.iID,
@@ -98,7 +98,7 @@ const actions = {
   },
   fetchCheckUploadItemList({ commit }, payload = {}) {
     return rest({
-      url: '/m/admin/checkupload/items/list/get',
+      url: '/api/m/admin/checkupload/items/list/get',
       method: 'get',
       params: {
         sort: payload.sort,
@@ -107,7 +107,7 @@ const actions = {
   },
   fetchUserList({ commit }, payload = {}) {
     return rest({
-      url: '/m/admin/user/list/get',
+      url: '/api/m/admin/user/list/get',
       method: 'get',
       params: {
         sort: payload.sort,

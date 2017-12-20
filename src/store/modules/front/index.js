@@ -13,12 +13,12 @@ const actions = {
     console.log(payload.type);
     if (payload.key) {
       return rest({
-        url: `/m/items/${payload.type}/${payload.page}/${payload.key}/list`,
+        url: `/api/m/items/${payload.type}/${payload.page}/${payload.key}/list`,
         method: 'get',
       });
     }
     return rest({
-      url: `/m/items/${payload.type}/${payload.page}/list`,
+      url: `/api/m/items/${payload.type}/${payload.page}/list`,
       method: 'get',
     });
   },
