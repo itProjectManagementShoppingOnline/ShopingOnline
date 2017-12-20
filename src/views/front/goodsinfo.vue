@@ -119,9 +119,6 @@
       margin-top: 10px;
       margin-bottom: 10px;
     }
-    span {
-      margin-left: 30px;
-    }
     .ind1 {
       margin-left: 62px;
     }
