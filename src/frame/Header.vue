@@ -88,9 +88,9 @@ export default {
       location.reload();
     },
   },
-  watch: {
-    $route: 'reload',
-  },
+//  watch: {
+//    $route: 'reload',
+//  },
   computed: {
     isShow() {
       const path = this.$route.fullPath.split('/')[1];

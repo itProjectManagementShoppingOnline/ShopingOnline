@@ -67,6 +67,8 @@
     methods: {
       onSumit() {
         this.form.inumber = this.num1;
+        console.log(8888);
+        console.log(this.form.iID);
         if (this.token) {
           this.addgoodintoCart(this.form).then((resp) => {
             if (resp.data.code === 200) {
@@ -120,7 +122,6 @@
       margin-bottom: 10px;
     }
     span {
-      margin-left: 30px;
     }
     .ind1 {
       margin-left: 62px;

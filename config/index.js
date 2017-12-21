@@ -31,7 +31,7 @@ module.exports = {
       // '/a': 'http://localhost:3000',
       '/m': 'http://localhost:3000',
       '/user': 'http://localhost:3000',
-      '/api': 'http://192.168.1.175:8000'
+      // '/api': 'http://192.168.1.175:8000'
       '/api': {
         target: 'http://192.168.1.175:8000',//设置你调用的接口域名和端口号 别忘了加http
         changeOrigin: true,

@@ -36,11 +36,12 @@
         this.$router.push({ name: 'GoodInfo', params: { id: this.id } });
       },
       addcart() {
+        alert(this.token);
         if (this.token) {
           this.getUserInfo(this.token).then((resp) => {
             this.userinfo = resp.data.data;
           });
-          this.good.iID = this.ID;
+          this.good.iID = this.id;
           this.good.iname = this.name;
           this.good.userID = this.userinfo.userID;
           this.good.inumber = 1;
@@ -51,6 +52,7 @@
         } else {         // 提醒登录或注册
           this.$router.push({ name: 'Signin' });
         }
+        console.log(this.good.userID);
       },
       ...mapActions({
         addgoodintoCart: 'user.index/addgoodintoCart',
