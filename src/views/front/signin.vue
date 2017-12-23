@@ -53,24 +53,24 @@
         this.$refs.signinForm.validate((valid) => {
           if (valid) {
             this.signin({ signinForm: this.signinForm, role: 'user' }).then((respCode) => {
-              console.log(respCode);
-              console.log(151);
-              /* 201 for name error
-                202 for pass error
-              */
+              console.log('respCode', respCode);
+              alert('a');
+              alert(respCode === 200);
               if (respCode === 401) {
+                alert('b');
+                this.passwordError = '密码错误';
+                return false;
+              }
+              if (respCode === 402) {
                 this.usernameError = '用户名不存在';
                 return false;
               }
-//              if (respCode === 401.1) {
-//                this.usernameError = '用户名不存在';
-//                return false;
-//              }
-//              if (respCode === 401.2) {
-//                this.passwordError = '密码错误';
-//                return false;
-//              }
-              this.$router.push({ path: '/' });
+              if (respCode === 200) {
+                alert('b');
+                this.$router.push({ path: '/' });
+                location.reload();
+                return true;
+              }
               return true;
             });
             return true;

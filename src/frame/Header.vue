@@ -82,10 +82,10 @@ export default {
       const itemPage = this.$route.params.page;
       if (this.searchKey) {
         this.$router.push({ name: 'Search', params: { page: itemPage, type: itemType, key: this.searchKey } });
+        location.reload();
         return;
       }
       this.$router.push({ name: 'Items', params: { page: itemPage, type: itemType } });
-      location.reload();
     },
   },
 //  watch: {

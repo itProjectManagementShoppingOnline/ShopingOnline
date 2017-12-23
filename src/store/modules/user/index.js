@@ -38,7 +38,7 @@ const actions = {
         return Promise.reject(error);
       }
       code = resp.data.code;
-      console.log(code);
+      // console.log('code', code);
       console.log('data', resp.data.data.token);
       // 成功
       if (code === 200) {
@@ -46,6 +46,7 @@ const actions = {
       }
       return Promise.resolve(code);
     }).catch((error) => {
+      alert('alert');
       console.log(error);
       return Promise.resolve(error);
     });
