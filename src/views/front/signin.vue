@@ -12,10 +12,10 @@
       </div>
       <el-form :model="signinForm" ref="signinForm" :rules="rules">
         <el-form-item prop="username" label="用户名" ref="username" :error="usernameError">
-          <el-input name="username"  type="text" placeholder="手机 用户名" v-model="signinForm.username"/>
+          <el-input name="username"  type="text" placeholder="手机 用户名" v-model="signinForm.username"/><span style="color: red">{{usernameError}}</span>
         </el-form-item>
         <el-form-item prop="password" label="密码" ref="password">
-          <el-input name="password" placeholder="密码" v-model="signinForm.password" :error="passwordError"/>
+          <el-input name="password" placeholder="密码" v-model="signinForm.password" :error="passwordError"/><span style="color: red">{{passwordError}}</span>
         </el-form-item>
         <el-button type="primary" style="width:100%;margin-bottom:30px;"  @click.native.prevent="handlesignin">登录</el-button>
       </el-form>
@@ -54,10 +54,7 @@
           if (valid) {
             this.signin({ signinForm: this.signinForm, role: 'user' }).then((respCode) => {
               console.log('respCode', respCode);
-              alert('a');
-              alert(respCode === 200);
               if (respCode === 401) {
-                alert('b');
                 this.passwordError = '密码错误';
                 return false;
               }
@@ -66,7 +63,7 @@
                 return false;
               }
               if (respCode === 200) {
-                alert('b');
+//                alert('c');
                 this.$router.push({ path: '/' });
                 location.reload();
                 return true;

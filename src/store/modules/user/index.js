@@ -38,15 +38,13 @@ const actions = {
         return Promise.reject(error);
       }
       code = resp.data.code;
-      // console.log('code', code);
-      console.log('data', resp.data.data.token);
+      // console.log('data', resp.data.data.token);
       // 成功
       if (code === 200) {
         commit('SET_TOKEN', resp.data.data.token);
       }
       return Promise.resolve(code);
     }).catch((error) => {
-      alert('alert');
       console.log(error);
       return Promise.resolve(error);
     });
