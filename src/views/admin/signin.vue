@@ -1,5 +1,6 @@
 <template>
   <div class="in-sign">
+    <input v-model="token" />
     <div class="sign-form" label-position="left">
       <mu-icon-button icon="highlight_off" style="position: absolute;top:-20px;right: 30px;color:red" :to="{ name: 'FrontIndex'}" />
       <div class="form-title">

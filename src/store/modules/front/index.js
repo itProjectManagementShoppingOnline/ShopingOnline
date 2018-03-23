@@ -26,7 +26,7 @@ const actions = {
   fetchGoodinfo({ commit }, payload = {}) {              // 获取商城某个商品的信息
     return rest({
       // url: 'http://192.168.1.175:8000/m/good/info/1/list',
-      url: `/api/m/good/info/${payload.id}/list`,
+      url: `http://192.168.1.175:8000/m/good/info/${payload.id}/list`,
       // url: `/m/good/info/${payload.id}/list`,
       method: 'get',
     });

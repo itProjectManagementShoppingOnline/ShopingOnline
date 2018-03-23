@@ -48,7 +48,7 @@
     data() {
       return {
         itemList: [],
-        totalItemNum: 1,
+        totalItemNum: 2,
 //        page: this.$route.params.page,
 //        type: this.$route.params.type,
         typeSet: [
@@ -83,7 +83,6 @@
           return Promise.reject(error);
         }
         this.itemList = resp.data.data;
-        this.totalItemNum = resp.data.totalItemNum;
         return Promise.resolve(resp);
       }).catch(error => console.log(error));
     },
@@ -91,7 +90,6 @@
       handleCurrentChange(val) {
         if (this.key) {
           this.$router.push({ name: 'Search', params: { page: val, type: this.type, key: this.key } });
-          location.reload();
           return;
         }
         this.$router.push({ name: 'Items', params: { page: val, type: this.type } });

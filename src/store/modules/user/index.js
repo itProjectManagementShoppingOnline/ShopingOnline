@@ -26,7 +26,7 @@ const actions = {
     // alert(usernameTrimed);
 
     return rest({
-      url: '/api/user/signin/post',
+      url: '/user/signin/post',
       method: 'post',
       data: {
         username: usernameTrimed,
@@ -38,7 +38,6 @@ const actions = {
         return Promise.reject(error);
       }
       code = resp.data.code;
-      // console.log('data', resp.data.data.token);
       // 成功
       if (code === 200) {
         commit('SET_TOKEN', resp.data.data.token);
@@ -56,7 +55,7 @@ const actions = {
     const phoneNumTrimed = payload.signupForm.phoneNum.trim();
 
     return rest({
-      url: '/api/user/signup',
+      url: '/user/signup/post',
       method: 'post',
       data: {
         username: usernameTrimed,
@@ -67,7 +66,6 @@ const actions = {
       if (error) {
         return Promise.reject(error);
       }
-      console.log(resp);
       code = resp.data.code;
       // 成功
       if (code === 200) {
@@ -78,7 +76,7 @@ const actions = {
   },
   signOut({ commit }) {
     return rest({
-      url: '/api/user/signout/post',
+      url: '/user/signout/post',
       method: 'post',
       // params: {
       //   token: _state.token,
@@ -96,7 +94,7 @@ const actions = {
   },
   getUserInfo({ commit, _state }) {
     return rest({
-      url: '/api/user/info/get',
+      url: '/user/info/get',
       method: 'get',
     }).then((resp) => {
       console.log('getUserInfo', state);
@@ -112,7 +110,7 @@ const actions = {
   },
   getCartlist() {                                     //
     return rest({
-      url: '/api/user/cart/goods/get/list',
+      url: '/user/cart/goods/get/list',
       method: 'get',
     }).then((resp) => {
       console.log(resp);
@@ -124,13 +122,13 @@ const actions = {
   },
   getUserorder() {                                    //
     return rest({
-      url: '/api/user/order/get/list',
+      url: '/user/order/get/list',
       method: 'get',
     });
   },
   sellergoodslist() {                           //
     return rest({
-      url: '/api/user/seller/goods/list',
+      url: '/user/seller/goods/list',
       method: 'get',
     }).then((resp) => {
       console.log(resp);
@@ -142,7 +140,7 @@ const actions = {
   },
   sellerorderlist() {                          //
     return rest({
-      url: '/api/user/seller/orders/list',
+      url: '/user/seller/orders/list',
       method: 'get',
     }).then((resp) => {
       console.log(resp);
@@ -154,7 +152,7 @@ const actions = {
   },
   openSellerCenter({ commit }, payload = {}) {             // 用户发送商家审核请求
     return rest({
-      url: '/api/user/seller/open',
+      url: '/user/seller/open',
       method: 'post',
       data: {
         userID: payload.userID,
@@ -171,7 +169,7 @@ const actions = {
     const idesctrim = payload.idesc.trim();
     const itypetrim = payload.itype.trim();
     return rest({
-      url: '/api/user/seller/up/item',
+      url: '/user/seller/up/item',
       method: 'post',
       data: {
         iname: inametrim,
@@ -194,7 +192,7 @@ const actions = {
     const itemID = payload.Num;
     const itemname = payload.name;
     return rest({
-      url: '/api/user/seller/cancel/good',
+      url: '/user/seller/cancel/good',
       method: 'post',
       data: {
         iID: itemID,
@@ -209,7 +207,7 @@ const actions = {
     const iphonenum = payload.phone;
     const iemail = payload.email;
     return rest({
-      url: '/api/user/post/info',
+      url: '/user/post/info',
       method: 'post',
       data: {
         userID: iuserID,
@@ -224,7 +222,7 @@ const actions = {
     const ID = payload.iID;
     const name = payload.iname;
     return rest({
-      url: '/api/user/add/item/cart',
+      url: '/user/add/item/cart',
       method: 'post',
       data: {
         iID: ID,
@@ -239,7 +237,7 @@ const actions = {
     const name = payload.iname;
     const number = payload.inumber;
     return rest({
-      url: '/api/user/delete/item/cart',
+      url: '/user/delete/item/cart',
       method: 'post',
       data: {
         iID: ID,
@@ -253,7 +251,7 @@ const actions = {
     const name = payload.iname;
     const number = payload.inumber;
     return rest({
-      url: '/api/user/add/item/order',
+      url: '/user/add/item/order',
       method: 'post',
       data: {
         iID: ID,
@@ -264,7 +262,7 @@ const actions = {
   },
   deleteUserOrder({ commit }, payload = {}) {                  //
     return rest({
-      url: '/api/user/delete/user/order',
+      url: '/user/delete/user/order',
       method: 'post',
       data: {
         orderID: payload.orderID,
@@ -273,7 +271,7 @@ const actions = {
   },
   deleteSellerOrder({ commit }, payload = {}) {                    //
     return rest({
-      url: '/api/user/delete/seller/order',
+      url: '/user/delete/seller/order',
       method: 'post',
       data: {
         orderID: payload.orderID,
@@ -282,7 +280,7 @@ const actions = {
   },
   changeSellergoodinfo({ commit }, payload = {}) {                //
     return rest({
-      url: '/api/user/change/sellergood/info',
+      url: '/user/change/sellergood/info',
       method: 'post',
       data: {
         info_change: payload,
@@ -295,9 +293,8 @@ const actions = {
 const mutations = {
   SET_TOKEN: (_state, token) => {
     // _state.token = token;
-    // console.log('SET_TOKEN', state);
-    // console.log('SET_TOKEN_', _state);
-    // alert(token);
+    console.log('SET_TOKEN', state);
+    console.log('SET_TOKEN_', _state);
     setToken(token);
   },
   SET_ROLES: (_state, roles) => {

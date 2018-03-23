@@ -292,10 +292,7 @@
         });
       },
       handleAvatarSuccess(res, file) {
-        alert('a');
         this.imageUrl = URL.createObjectURL(file.raw);
-//        alert(this.imageUrl);
-//        console.log(this.imageUrl);
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';

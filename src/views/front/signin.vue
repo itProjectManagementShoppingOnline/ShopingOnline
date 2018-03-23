@@ -12,10 +12,10 @@
       </div>
       <el-form :model="signinForm" ref="signinForm" :rules="rules">
         <el-form-item prop="username" label="用户名" ref="username" :error="usernameError">
-          <el-input name="username"  type="text" placeholder="手机 用户名" v-model="signinForm.username"/><span style="color: red">{{usernameError}}</span>
+          <el-input name="username"  type="text" placeholder="手机 用户名" v-model="signinForm.username"/>
         </el-form-item>
         <el-form-item prop="password" label="密码" ref="password">
-          <el-input name="password" placeholder="密码" v-model="signinForm.password" :error="passwordError"/><span style="color: red">{{passwordError}}</span>
+          <el-input name="password" placeholder="密码" v-model="signinForm.password" :error="passwordError"/>
         </el-form-item>
         <el-button type="primary" style="width:100%;margin-bottom:30px;"  @click.native.prevent="handlesignin">登录</el-button>
       </el-form>
@@ -53,21 +53,24 @@
         this.$refs.signinForm.validate((valid) => {
           if (valid) {
             this.signin({ signinForm: this.signinForm, role: 'user' }).then((respCode) => {
-              console.log('respCode', respCode);
+              console.log(respCode);
+              console.log(151);
+              /* 201 for name error
+                202 for pass error
+              */
               if (respCode === 401) {
-                this.passwordError = '密码错误';
-                return false;
-              }
-              if (respCode === 402) {
                 this.usernameError = '用户名不存在';
                 return false;
               }
-              if (respCode === 200) {
-//                alert('c');
-                this.$router.push({ path: '/' });
-                location.reload();
-                return true;
-              }
+//              if (respCode === 401.1) {
+//                this.usernameError = '用户名不存在';
+//                return false;
+//              }
+//              if (respCode === 401.2) {
+//                this.passwordError = '密码错误';
+//                return false;
+//              }
+              this.$router.push({ path: '/' });
               return true;
             });
             return true;
