@@ -4,19 +4,16 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import store from '@/store';
 import ElementUI from 'element-ui';
-import MuseUI from 'muse-ui';
-import 'muse-ui/dist/muse-ui.css';
 import 'element-ui/lib/theme-default/index.css';
 import '@/common/style/normalize.css';
 import App from './App';
 import router from './router';
-import './permission';
+// import './permission';
 
 
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
-Vue.use(MuseUI);
 Vue.use(Vuex);
 
 /* eslint-disable no-new */

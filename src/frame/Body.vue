@@ -20,10 +20,11 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .i-body {
   width: 1190px;
   margin: auto;
+  background-color: white;
+  min-height: 100%;
 }
 </style>
