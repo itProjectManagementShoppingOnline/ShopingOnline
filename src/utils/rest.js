@@ -1,4 +1,6 @@
+/* eslint-disable no-param-reassign */
 import axios from 'axios';
+import { getToken } from '@/utils/auth';
 
 
 const HEADER = {
@@ -52,8 +54,19 @@ function showNetworkError(resp) {
   console.warn(text);
 }
 
+axiosInstance.interceptors.request.use(
+  (config) => {
+    if (getToken()) {
+      console.log(`JWT ${getToken()}`);
+      config.headers.Authorization = `JWT ${getToken()}`;
+    }
+    return config;
+  },
+  err => Promise.reject(err));
+
 axiosInstance.interceptors.response.use(response => response, (error) => {
   showNetworkError(error.response);
+  return Promise.reject(error.response);
 });
 
 export default axiosInstance;
