@@ -18,13 +18,13 @@
         <router-link :to="{ name: 'Signin'}">
           <div>退出登陆</div>
         </router-link>
-        <router-link :to="{ name: 'Signin'}" v-if="!token">
-          <el-menu-item index="signin" >登陆</el-menu-item>
-        </router-link>
-        <router-link :to="{ name: 'UserInfo'}" v-if="token">
-          <el-menu-item index="myInfo" v-if="token">我的信息</el-menu-item>
-        </router-link>
-        <el-menu-item index="myInfo" v-if="token" @click="handleSignout" >退出登陆</el-menu-item>
+        <!--<router-link :to="{ name: 'Signin'}" v-if="!token">-->
+          <!--<el-menu-item index="signin" >登陆</el-menu-item>-->
+        <!--</router-link>-->
+        <!--<router-link :to="{ name: 'UserInfo'}" v-if="token">-->
+          <!--<el-menu-item index="myInfo" v-if="token">我的信息</el-menu-item>-->
+        <!--</router-link>-->
+        <!--<el-menu-item index="myInfo" v-if="token" @click="handleSignout" >退出登陆</el-menu-item>-->
       </div>
     </div>
   </header>

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Management from '@/views/management/Index';
-import ClientsList from '@/views/management/ClientsList';
+import ClientsList from '@/views/management/client/ClientsList';
 import Signup from '@/views/user/signup';
 import Signin from '@/views/user/signin';
 import UserManage from '@/views/admin/userManage';
@@ -14,10 +14,10 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Management,
-      redirect: '/clientlist',
+      redirect: '/client/list',
       children: [
         {
-          path: '/clientlist',
+          path: '/client/list',
           name: 'ClientsList',
           component: ClientsList,
         },

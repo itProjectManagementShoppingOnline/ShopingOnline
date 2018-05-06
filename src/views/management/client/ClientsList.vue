@@ -4,8 +4,25 @@
       <el-breadcrumb separator="/" class="breadcrumb">
         <el-breadcrumb-item :to="{ path: '/usermanagement' }">B端用户管理</el-breadcrumb-item>
       </el-breadcrumb>
-      <el-button type="primary" icon="el-icon-search">新建账户</el-button>
+      <el-button type="primary" icon="el-icon-search" @click="dialogVisible = true">新建账户</el-button>
     </div>
+    <el-dialog
+      title="创建B端账号"
+      :visible.sync="dialogVisible"
+      custom-class="w-center"
+      :before-close="handleClose">
+        <el-form ref="form" :model="clientForm" label-position="left" label-width="80px">
+          <el-form-item label="账号名">
+            <el-input v-model="clientForm.name"></el-input>
+          </el-form-item>
+          <el-form-item label="备注">
+            <el-input type="textarea" v-model="clientForm.remark"></el-input>
+          </el-form-item>
+        </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="handleCreate">创 建</el-button>
+      </span>
+    </el-dialog>
     <el-table
       :data="tableData"
       style="width: 100%">
@@ -34,7 +51,7 @@
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index, scope.row)">密码重置</el-button>
+            @click="handleResetPW(scope.$index, scope.row)">密码重置</el-button>
           <el-button
             size="mini"
             type="danger"
@@ -49,6 +66,11 @@
   export default {
     data() {
       return {
+        clientForm: {
+          name: '',
+          remark: '',
+        },
+        dialogVisible: false,
         tableData: [{
           id: 1,
           username: 'inspire',
@@ -93,11 +115,23 @@
       };
     },
     methods: {
-      handleEdit(index, row) {
+      handleResetPW(index, row) {
         console.log(index, row);
       },
       handleDelete(index, row) {
         console.log(index, row);
+      },
+      handleClose() {
+        this.dialogVisible = false;
+      },
+      handleCreate() {
+        this.dialogVisible = false;
+        this.$message({
+          showClose: 'true',
+          message: '账号新建成功 密码:123456',
+          type: 'success',
+          duration: 0,
+        });
       },
     },
     components: {},
@@ -105,6 +139,8 @@
 </script>
 
 <style lang="scss">
+  @import "../../../common/style/base";
+
   .clientlist{
     padding: 8px 14px;
     .tool {
