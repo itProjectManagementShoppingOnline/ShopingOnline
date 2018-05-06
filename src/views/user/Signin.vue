@@ -2,14 +2,7 @@
   <div class="in-sign">
     <div class="sign-form" label-position="left">
       <mu-icon-button icon="highlight_off" style="position: absolute;top:-20px;right: 30px;color:red" :to="{ name: 'FrontIndex'}" />
-      <div class="form-title">
-        <el-menu :default-active="activeIndex" mode="horizontal">
-          <el-menu-item index="signin">登陆</el-menu-item>
-          <router-link :to="{ name: 'Signup'}">
-            <el-menu-item index="signup">注册</el-menu-item>
-          </router-link>
-        </el-menu>
-      </div>
+      <h2 class="form-title">登陆</h2>
       <el-form :model="signinForm" ref="signinForm" :rules="rules">
         <el-form-item prop="username" label="用户名" ref="username" :error="usernameError">
           <el-input name="username"  type="text" placeholder="手机 用户名" v-model="signinForm.username"/>
@@ -101,10 +94,8 @@
 
     .form-title {
       margin: 0px auto 40px auto;
-      width: 160px;
-    li {
+      text-align: center;
       font-size: 20px;
-    }
     }
     .sign-form {
       position: absolute;

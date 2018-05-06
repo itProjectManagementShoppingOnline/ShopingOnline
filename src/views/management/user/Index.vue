@@ -2,7 +2,7 @@
   <div class="clientlist">
     <div class="tool">
       <el-breadcrumb separator="/" class="breadcrumb">
-        <el-breadcrumb-item :to="{ path: '/usermanagement' }">B端用户管理</el-breadcrumb-item>
+        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
       </el-breadcrumb>
       <el-button type="primary" icon="el-icon-search" @click="dialogVisible = true">新建账户</el-button>
     </div>
@@ -11,7 +11,7 @@
       :visible.sync="dialogVisible"
       custom-class="w-center"
       :before-close="handleClose">
-        <el-form ref="form" :model="clientForm" label-position="left" label-width="80px">
+        <el-form ref="form" :model="clientForm" label-position="left">
           <el-form-item label="账号名">
             <el-input v-model="clientForm.name"></el-input>
           </el-form-item>

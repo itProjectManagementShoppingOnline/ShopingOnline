@@ -38,8 +38,6 @@ export default {
   props: ['header'],
   data() {
     return {
-      activeItem: 'index',
-      searchKey: '',
     };
   },
   methods: {
@@ -53,9 +51,9 @@ export default {
       });
     },
   },
-  watch: {
-    $route: 'reload',
-  },
+//  watch: {
+//    $route: 'reload',
+//  },
   computed: {
     ...mapGetters({
       token: 'user.index/token',

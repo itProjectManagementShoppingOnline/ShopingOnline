@@ -1,22 +1,25 @@
 <template>
   <div class="usermanagement">
     <div class="usermanagement-left">
-      <el-menu default-active="client" >
+      <el-menu default-active="client">
         <div v-for="(menuItem, index) in asideMenu">
-          <el-submenu :index="menuItem.name" v-if="menuItem.type === 'sub'">
+          <router-link :to="{ name: menuItem.name }">
+            <el-submenu :index="menuItem.name" v-if="menuItem.type === 'sub'">
             <template slot="title">
               <i class="el-icon-menu"></i>
               {{menuItem.label}}
             </template>
-            <el-menu-item v-for="(subItem, index) in menuItem.sub"
-                          :index="subItem.name">
-              {{subItem.label}}
-            </el-menu-item>
+            <router-link v-for="(subItem, index) in menuItem.sub" :to="{ name: subItem.name }">
+              <el-menu-item  :index="subItem.name">
+                {{subItem.label}}
+              </el-menu-item>
+            </router-link>
           </el-submenu>
-          <el-menu-item :index="menuItem.name" v-else>
-            <i class="el-icon-menu"></i>
-            <span slot="title">{{menuItem.label}}</span>
-          </el-menu-item>
+            <el-menu-item :index="menuItem.name" v-if="menuItem.type !== 'sub'">
+              <i class="el-icon-menu"></i>
+              <span slot="title">{{menuItem.label}}</span>
+            </el-menu-item>
+          </router-link>
         </div>
       </el-menu>
     </div>
@@ -34,27 +37,27 @@
       return {
         asideMenu: [
           {
-            name: 'client',
+            name: 'Clients',
             label: 'B端账号管理',
           }, {
-            name: 'user',
-            label: '普通用户管理',
+            name: 'Users',
+            label: '用户管理',
           }, {
-            name: 'activity',
+            name: 'Activitys',
             label: '活动管理',
           }, {
             type: 'sub',
-            name: 'course',
+            name: 'Courses',
             label: '课程管理',
             sub: [
               {
-                name: 'learncircle',
+                name: 'Learncircles',
                 label: '学习圈管理',
               }, {
-                name: 'discussion',
+                name: 'Discussions',
                 label: '讨论管理',
               }, {
-                name: 'reply',
+                name: 'Replys',
                 label: '回复管理',
               },
             ],
@@ -65,6 +68,9 @@
     mounted() {
     },
     methods: {
+      routerToList(e) {
+        console.log(e);
+      },
       ...mapActions({
       }),
     },

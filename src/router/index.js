@@ -1,9 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Management from '@/views/management/Index';
-import ClientsList from '@/views/management/client/ClientsList';
-import Signup from '@/views/user/signup';
-import Signin from '@/views/user/signin';
+import Clients from '@/views/management/client/Index';
+import Users from '@/views/management/user/Index';
+import Activitys from '@/views/management/activity/Index';
+import Courses from '@/views/management/course/Index';
+import Learncircle from '@/views/management/course/Learncircle';
+import Discussion from '@/views/management/course/Discussion';
+import Reply from '@/views/management/course/Reply';
+import Signin from '@/views/user/Signin';
 import UserManage from '@/views/admin/userManage';
 
 Vue.use(Router);
@@ -18,18 +23,38 @@ export default new Router({
       children: [
         {
           path: '/client/list',
-          name: 'ClientsList',
-          component: ClientsList,
+          name: 'Clients',
+          component: Clients,
+        }, {
+          path: '/user/list',
+          name: 'Users',
+          component: Users,
+        }, {
+          path: '/activity/list',
+          name: 'Activitys',
+          component: Activitys,
+        }, {
+          path: '/course/list',
+          name: 'Courses',
+          component: Courses,
+        }, {
+          path: '/learncircle/list',
+          name: 'Learncircles',
+          component: Learncircle,
+        }, {
+          path: '/discussion/list',
+          name: 'Discussions',
+          component: Discussion,
+        }, {
+          path: '/reply/list',
+          name: 'Replys',
+          component: Reply,
         },
       ],
     }, {
       path: '/signin',
       name: 'Signin',
       component: Signin,
-    }, {
-      path: '/signup',
-      name: 'Signup',
-      component: Signup,
     }, {
       path: '/admin/manage/user',
       name: 'UserManage',
