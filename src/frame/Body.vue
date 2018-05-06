@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 .i-body {
-  width: 1190px;
+  width: 960px;
   margin: auto;
   background-color: white;
   min-height: 100%;

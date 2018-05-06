@@ -1,9 +1,11 @@
 <template>
   <div class="clientlist">
-    <el-breadcrumb separator="/" class="breadcrumb">
-      <el-breadcrumb-item :to="{ path: '/usermanagement' }">用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>B端用户管理</el-breadcrumb-item>
-    </el-breadcrumb>
+    <div class="tool">
+      <el-breadcrumb separator="/" class="breadcrumb">
+        <el-breadcrumb-item :to="{ path: '/usermanagement' }">B端用户管理</el-breadcrumb-item>
+      </el-breadcrumb>
+      <el-button type="primary" icon="el-icon-search">新建账户</el-button>
+    </div>
     <el-table
       :data="tableData"
       style="width: 100%">
@@ -22,17 +24,17 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="备注"
+        label="创建时间"
         width="180">
         <template slot-scope="scope">
-          <span>{{ scope.row.remark }}</span>
+          <span>{{ scope.row.add_time }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            @click="handleEdit(scope.$index, scope.row)">密码重置</el-button>
           <el-button
             size="mini"
             type="danger"
@@ -50,43 +52,43 @@
         tableData: [{
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }, {
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }, {
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }, {
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }, {
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }, {
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }, {
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }, {
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }, {
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }, {
           id: 1,
           username: 'inspire',
-          remark: 'XXXX公司账号',
+          add_time: '2018.4.18',
         }],
       };
     },
@@ -103,13 +105,18 @@
 </script>
 
 <style lang="scss">
-  .breadcrumb{
-    height: 60px;
-    line-height: 60px;
-    margin-left: 20px;
-    margin-bottom: 10px;
-  }
   .clientlist{
     padding: 8px 14px;
+    .tool {
+      display: flex;
+      margin: 8px 8px 12px;
+      .breadcrumb{
+        flex: auto;
+        line-height: 34px;
+      }
+      el-button {
+        flex: auto;
+      }
+    }
   }
 </style>

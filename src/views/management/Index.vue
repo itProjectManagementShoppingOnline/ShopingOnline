@@ -3,7 +3,17 @@
     <div class="usermanagement-left">
       <el-menu default-active="client" >
         <div v-for="(menuItem, index) in asideMenu">
-          <el-menu-item :index=menuItem.name >
+          <el-submenu :index="menuItem.name" v-if="menuItem.type === 'sub'">
+            <template slot="title">
+              <i class="el-icon-menu"></i>
+              {{menuItem.label}}
+            </template>
+            <el-menu-item v-for="(subItem, index) in menuItem.sub"
+                          :index="subItem.name">
+              {{subItem.label}}
+            </el-menu-item>
+          </el-submenu>
+          <el-menu-item :index="menuItem.name" v-else>
             <i class="el-icon-menu"></i>
             <span slot="title">{{menuItem.label}}</span>
           </el-menu-item>
@@ -29,6 +39,25 @@
           }, {
             name: 'user',
             label: '普通用户管理',
+          }, {
+            name: 'activity',
+            label: '活动管理',
+          }, {
+            type: 'sub',
+            name: 'course',
+            label: '课程管理',
+            sub: [
+              {
+                name: 'learncircle',
+                label: '学习圈管理',
+              }, {
+                name: 'discussion',
+                label: '讨论管理',
+              }, {
+                name: 'reply',
+                label: '回复管理',
+              },
+            ],
           },
         ],
       };
