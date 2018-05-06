@@ -20,10 +20,10 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Management,
-      redirect: '/client/list',
+      redirect: '/clients/page/1',
       children: [
         {
-          path: '/client/list',
+          path: '/clients/page/:page',
           name: 'Clients',
           component: Clients,
         }, {

@@ -24,7 +24,7 @@
       </span>
     </el-dialog>
     <el-table
-      :data="tableData"
+      :data="tableData.list"
       style="width: 100%">
       <el-table-column
         label="ID"
@@ -59,10 +59,21 @@
         </template>
       </el-table-column>
     </el-table>
+    <div class="w-list-pagination">
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :current-page=tableData.page
+        :page-size="tableData.pagesize"
+        layout="total, prev, pager, next, jumper"
+        :total="tableData.count">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex';
+
   export default {
     data() {
       return {
@@ -71,50 +82,25 @@
           remark: '',
         },
         dialogVisible: false,
-        tableData: [{
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }, {
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }, {
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }, {
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }, {
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }, {
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }, {
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }, {
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }, {
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }, {
-          id: 1,
-          username: 'inspire',
-          add_time: '2018.4.18',
-        }],
+        tableData: {},
       };
     },
+    mounted() {
+      this.fetchClientList().then((resp) => {
+        console.log('resp', resp);
+        this.tableData = resp.data;
+      });
+    },
     methods: {
+      ...mapActions({
+        fetchClientList: 'management.client/fetchClientList',
+      }),
+      // 显示部分
+      handleCurrentChange(val) {
+        this.$router.push({ name: 'Clients', params: { page: val } });
+        document.body.scrollTop = 0;
+      },
+      // 操作部分
       handleResetPW(index, row) {
         console.log(index, row);
       },
@@ -134,7 +120,12 @@
         });
       },
     },
-    components: {},
+    computed: {
+      ...mapGetters({
+      }),
+    },
+    components: {
+    },
   };
 </script>
 

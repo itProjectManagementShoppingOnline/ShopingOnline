@@ -28,6 +28,34 @@
 }
 
 
+.w-list-pagination {
+  margin: 30px 20px;
+  display: flex;
+  justify-content: center;
+  .el-pager li.active {
+    border-color: #93b9ff;
+    background-color: white;
+    color: #93b9ff;
+    cursor: default;
+  }
+  span {
+    margin: 0 15px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+  }
+  input {
+    margin: 0 10px;
+  }
+  button, li, input {
+    height: 35px;
+    width: 42px;
+    line-height: 35px;
+    text-align: center;
+  }
+}
+
+
 .el-message__group p {
   font-size: 14px;
   margin: 0 34px 0 0;

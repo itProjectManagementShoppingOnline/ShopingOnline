@@ -7,6 +7,7 @@ import * as getters from './getters';
 
 // modules
 import User from './modules/user/index';
+import mClient from './modules/management/client';
 
 Vue.use(Vuex);
 
@@ -17,5 +18,6 @@ export default new Vuex.Store({
   mutations,
   modules: {
     'user.index': User,
+    'management.client': mClient,
   },
 });

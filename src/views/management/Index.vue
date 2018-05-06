@@ -68,9 +68,6 @@
     mounted() {
     },
     methods: {
-      routerToList(e) {
-        console.log(e);
-      },
       ...mapActions({
       }),
     },
