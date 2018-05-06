@@ -1,8 +1,7 @@
 <template>
   <div class="in-sign">
     <div class="sign-form" label-position="left">
-      <mu-icon-button icon="highlight_off" style="position: absolute;top:-20px;right: 30px;color:red" :to="{ name: 'FrontIndex'}" />
-      <h2 class="form-title">登陆</h2>
+      <h2 class="form-title">登陆</h2>{{pageType}}
       <el-form :model="signinForm" ref="signinForm" :rules="rules">
         <el-form-item prop="username" label="用户名" ref="username" :error="usernameError">
           <el-input name="username"  type="text" placeholder="手机 用户名" v-model="signinForm.username"/>
@@ -22,7 +21,7 @@
   export default {
     data() {
       return {
-        activeIndex: 'signin',
+        pageType: this.$route.name,
         usernameError: '',
         passwordError: '',
         signinForm: {
@@ -32,7 +31,7 @@
         rules: {
           username: [
             { required: true, message: '请输入用户名', trigger: 'blur' },
-            { min: 6, message: '长度至少6个字符', trigger: 'blur' },
+            { min: 3, message: '长度至少3个字符', trigger: 'blur' },
 
           ],
           password: [
@@ -45,25 +44,17 @@
       handlesignin() {
         this.$refs.signinForm.validate((valid) => {
           if (valid) {
-            this.signin({ signinForm: this.signinForm, role: 'user' }).then((respCode) => {
-              console.log(respCode);
-              console.log(151);
-              /* 201 for name error
-                202 for pass error
-              */
-              if (respCode === 401) {
+            this.signIn({ signinForm: this.signinForm, pageType: this.pageType }).then((resp) => {
+              if (resp.status === 401.1) {
                 this.usernameError = '用户名不存在';
                 return false;
               }
-//              if (respCode === 401.1) {
-//                this.usernameError = '用户名不存在';
-//                return false;
-//              }
-//              if (respCode === 401.2) {
-//                this.passwordError = '密码错误';
-//                return false;
-//              }
+              if (resp.status === 401.2) {
+                this.usernameError = '密码错误';
+                return false;
+              }
               this.$router.push({ path: '/' });
+              location.reload();
               return true;
             });
             return true;
@@ -73,12 +64,11 @@
         });
       },
       ...mapActions({
-        signin: 'user.index/signin',
+        signIn: 'user.index/signIn',
       }),
     },
     computed: {
       ...mapGetters({
-        token: 'user.index/token',
       }),
     },
   };
@@ -88,7 +78,11 @@
   @import "../../common/style/base.scss";
 
   .in-sign {
-    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     background-color: white;
 
 

@@ -4,7 +4,7 @@ import { getUserIDbyDecodeJSON } from '@/utils/decode';
 
 const state = {
   userID: null,
-  userName: '',
+  token: null,
 };
 
 const getters = {
@@ -17,38 +17,79 @@ const getters = {
     _state.userID = getUserIDbyDecodeJSON(getToken());
     return _state.userID;
   },
-  userName: _state => _state.userName,
+  token: (_state) => {
+    if (_state.token !== null) {
+      return _state.token;
+    }
+    return getToken();
+  },
 };
 
 const actions = {
-  login({ commit }, payload = {}) {
+  signIn({ commit }, payload = {}) {
+    console.log('signIn', payload);
+    let url = '/api/client/signin';
+    if (payload.pageType === 'AdminSignin') {
+      url = '/api/admin/signin';
+    }
+    // url 判断
     return rest({
-      url: 'http://139.199.165.118/api/login/',
+      url,
       method: 'post',
       data: {
-        username: payload.username,
-        password: payload.password,
+        username: payload.signinForm.username,
+        password: payload.signinForm.password,
       },
     }).then((resp) => {
       const token = resp.data.token;
+      console.log('token', token);
       setToken(token);
       return resp;
     });
   },
-  logout() {
-    console.log('logout');
+  signOut({ commit }) {
+    commit('setUserID', null);
+    commit('setToken', null);
     return removeToken();
   },
   fetchUserInfo({ commit }, payload) {
+    console.log(payload);
     return rest({
-      url: `http://139.199.165.118/api/user/${payload.id}/info/`,
+      url: '/api/client/info',
       method: 'get',
+    });
+  },
+  modifyUsername({ commit }, payload) {
+    console.log('modifyUsername', payload);
+    return rest({
+      url: '/api/common/post',
+      method: 'post',
+      data: {
+        username: payload.username,
+      },
+    });
+  },
+  modifyPassword({ commit }, payload) {
+    console.log('modifyPassword', payload);
+    return rest({
+      url: '/api/common/post',
+      method: 'post',
+      data: {
+        oPassword: payload.oPassword,
+        nPassword: payload.nPassword,
+      },
     });
   },
 };
 
 /* eslint no-param-reassign: 0 */
 const mutations = {
+  setUserID(_state, id) {
+    _state.userID = id;
+  },
+  setToken(_state, token) {
+    _state.token = token;
+  },
 };
 
 export default {

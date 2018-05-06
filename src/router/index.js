@@ -57,6 +57,10 @@ export default new Router({
       name: 'Signin',
       component: Signin,
     }, {
+      path: '/admin/signin',
+      name: 'AdminSignin',
+      component: Signin,
+    }, {
       path: '/usercenter',
       name: 'Usercenter',
       component: Usercenter,

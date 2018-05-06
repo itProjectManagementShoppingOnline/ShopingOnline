@@ -9,13 +9,13 @@
         </div>
       </div>
       <div class="header-board-my">
-        <router-link :to="{ name: 'Signin'}">
+        <router-link :to="{ name: 'Signin'}" v-if="!token">
           <div>登陆</div>
         </router-link>
-        <router-link :to="{ name: 'Usercenter'}">
+        <router-link :to="{ name: 'Usercenter'}" v-if="token">
           <div>我的信息</div>
         </router-link>
-        <div @click="handleSignout">退出登陆</div>
+        <div @click="handleSignout" v-if="token">退出登陆</div>
       </div>
     </div>
   </header>
@@ -31,18 +31,15 @@ export default {
   },
   methods: {
     ...mapActions({
-      signout: 'user.index/signOut',
+      signOut: 'user.index/signOut',
     }),
     handleSignout() {
-//      this.signout().then(() => {
-//        alert('退出账号');
-//        location.reload();
-//      });
+      this.signOut().then(() => {
+        alert('退出账号');
+        location.reload();
+      });
     },
   },
-//  watch: {
-//    $route: 'reload',
-//  },
   computed: {
     ...mapGetters({
       token: 'user.index/token',
@@ -90,7 +87,7 @@ export default {
         color: white;
         div {
           float: right;
-          margin-left: 16px;
+          margin-left: 20px;
         }
         a {
           color: white;

@@ -57,7 +57,7 @@ function showNetworkError(resp) {
 axiosInstance.interceptors.request.use(
   (config) => {
     if (getToken()) {
-      console.log(`JWT ${getToken()}`);
+      // console.log(`JWT ${getToken()}`);
       config.headers.Authorization = `JWT ${getToken()}`;
     }
     return config;
