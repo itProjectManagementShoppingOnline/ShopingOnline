@@ -6,6 +6,28 @@
 }
 
 
+.w-list{
+  width: 100%;
+  overflow: hidden;
+  margin: 0 50px;
+  padding: 10px;
+  p {
+    color: #999999;
+    min-height: 21px;
+  }
+  &-item {
+    display: flex;
+    &-label {
+      font-weight: 500;
+      font-size: 15px;
+      flex: 0 0 90px;
+      position: relative;
+      margin-top: 16px;
+    }
+  }
+}
+
+
 .el-message__group p {
   font-size: 14px;
   margin: 0 34px 0 0;

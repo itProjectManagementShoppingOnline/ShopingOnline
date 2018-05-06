@@ -9,6 +9,7 @@ import Learncircle from '@/views/management/course/Learncircle';
 import Discussion from '@/views/management/course/Discussion';
 import Reply from '@/views/management/course/Reply';
 import Signin from '@/views/user/Signin';
+import Usercenter from '@/views/user/Usercenter';
 import UserManage from '@/views/admin/userManage';
 
 Vue.use(Router);
@@ -55,6 +56,10 @@ export default new Router({
       path: '/signin',
       name: 'Signin',
       component: Signin,
+    }, {
+      path: '/usercenter',
+      name: 'Usercenter',
+      component: Usercenter,
     }, {
       path: '/admin/manage/user',
       name: 'UserManage',

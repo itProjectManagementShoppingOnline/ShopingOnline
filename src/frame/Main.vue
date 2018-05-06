@@ -36,4 +36,7 @@ export default {
 
 <style lang="scss">
  @import url("//unpkg.com/element-ui@2.0.4/lib/theme-chalk/index.css");
+ .i-main {
+   min-height: 100vh;
+ }
 </style>

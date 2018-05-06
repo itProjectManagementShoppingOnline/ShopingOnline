@@ -12,25 +12,14 @@
         <router-link :to="{ name: 'Signin'}">
           <div>登陆</div>
         </router-link>
-        <router-link :to="{ name: 'Signin'}">
+        <router-link :to="{ name: 'Usercenter'}">
           <div>我的信息</div>
         </router-link>
-        <router-link :to="{ name: 'Signin'}">
-          <div>退出登陆</div>
-        </router-link>
-        <!--<router-link :to="{ name: 'Signin'}" v-if="!token">-->
-          <!--<el-menu-item index="signin" >登陆</el-menu-item>-->
-        <!--</router-link>-->
-        <!--<router-link :to="{ name: 'UserInfo'}" v-if="token">-->
-          <!--<el-menu-item index="myInfo" v-if="token">我的信息</el-menu-item>-->
-        <!--</router-link>-->
-        <!--<el-menu-item index="myInfo" v-if="token" @click="handleSignout" >退出登陆</el-menu-item>-->
+        <div @click="handleSignout">退出登陆</div>
       </div>
     </div>
   </header>
 </template>
-
-
 <script>
 import { mapGetters, mapActions } from 'vuex';
 
@@ -45,10 +34,10 @@ export default {
       signout: 'user.index/signOut',
     }),
     handleSignout() {
-      this.signout().then(() => {
-        alert('退出账号');
-        location.reload();
-      });
+//      this.signout().then(() => {
+//        alert('退出账号');
+//        location.reload();
+//      });
     },
   },
 //  watch: {
@@ -60,7 +49,6 @@ export default {
     }),
   },
 };
-
 </script>
 
 
@@ -99,6 +87,7 @@ export default {
       &-my {
         margin-right: 20px;
         padding: 4px;
+        color: white;
         div {
           float: right;
           margin-left: 16px;
